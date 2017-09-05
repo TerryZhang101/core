@@ -52,7 +52,6 @@
                 <textarea id="content" cols="100" rows="30"></textarea>
             </div>
             </p>
-
         </div>
     </section>
 </div>
