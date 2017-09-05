@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njarston.datamodule.dao.UatMapper">
+
+
+    <insert id="insertDataByBatch" parameterType="java.lang.String">
+        <![CDATA[    ${insertData} ]]>
+    </insert>
+
+    <insert id="insertSingleData" parameterType="java.lang.String">
+        <![CDATA[    ${insertData} ]]>
+    </insert>
+    
+    <select id="queryUatCount" resultType="java.lang.Integer">
+        <![CDATA[  ${count} ]]>
+    </select>
+
+    <select id="queryColumnsRelation" resultType="java.util.HashMap">
+        <![CDATA[  ${columnsRelation}  ]]>
+    </select>
+
+
+</mapper>

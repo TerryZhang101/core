@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+                       ">
+    <!-- 引入配置文件 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties" />
+    </bean>
+
+    <bean id="dataSource_uat" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="${localDriver}" />
+        <property name="url" value="${localUrl}" />
+        <property name="username" value="${localUsername}" />
+        <property name="password" value="${localPassword}" />
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${initialSize}"></property>
+        <!-- 连接池最大数量 -->
+        <property name="maxActive" value="${maxActive}"></property>
+        <!-- 连接池最大空闲 -->
+        <property name="maxIdle" value="${maxIdle}"></property>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${minIdle}"></property>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="${maxWait}"></property>
+        <!-- 验证连接的有效性-->
+        <property name="testWhileIdle" value="true"></property>
+        <!-- 空闲连接回收的时间间隔，与test-while-idle一起使用，设置5分钟-->
+        <property name="timeBetweenEvictionRunsMillis" value="300000"></property>
+        <property name="validationQuery" value="select 1"></property>
+        <property name="testOnBorrow" value="false"></property>
+    </bean>
+
+    <bean id="sqlSessionFactory_uat" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource_uat" />
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <property name="mapperLocations" value="classpath:com/njarston/datamodule/dao/*.xml"/>
+    </bean>
+
+    <bean id="sqlSessionTemplate_uat" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory_uat" />
+    </bean>
+
+    <bean id="configurer_uat" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.njarston.datamodule.dao.local"/>
+        <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate_uat"/>
+    </bean>
+
+    <!--事务管理器 -->
+    <bean id="transactionManager_uat" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource_uat" />
+    </bean>
+
+    <!-- 使用全注释事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager_uat" />
+
+</beans>
