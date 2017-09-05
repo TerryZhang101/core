@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.njarston.datamodule</groupId>
-  <artifactId>datamodule</artifactId>
+  <artifactId>core</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>datamodule Maven Webapp</name>
+  <name>core Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -266,7 +266,7 @@
 
   </dependencies>
   <build>
-    <finalName>datamodule</finalName>
+    <finalName>core</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
