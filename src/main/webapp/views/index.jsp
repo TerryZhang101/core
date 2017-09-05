@@ -30,10 +30,6 @@
     <header>
         <h1>data <span>transform</span></h1>
         <h2>proxyQuery center</h2>
-        <nav class="codrops-demos">
-            <a class="current" href="./index.jsp">HomePage</a>
-            <a class="current" href="websocket.jsp">UpperPage</a>
-        </nav>
     </header>
     <section>
         <div id="container_buttons">
