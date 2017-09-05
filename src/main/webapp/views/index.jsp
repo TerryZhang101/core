@@ -7,10 +7,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>data transform center</title>
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="../css/style3.css" />
-    <script type="text/javascript" src="../css/jquery-3.2.1.js"></script>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/style3.css" />
+    <script type="text/javascript" src="css/jquery-3.2.1.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <style type="text/css">
@@ -30,6 +30,7 @@
     <header>
         <h1>data <span>transform</span></h1>
         <h2>proxyQuery center</h2>
+
     </header>
     <section>
         <div id="container_buttons">
@@ -48,6 +49,7 @@
                 <textarea id="content" cols="100" rows="30"></textarea>
             </div>
             </p>
+
         </div>
     </section>
 </div>
