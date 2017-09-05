@@ -17,7 +17,7 @@
     <slf4j.version>1.7.7</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
     <jetty.version>7.6.14.v20131031</jetty.version>
-    <webserver.port>9080</webserver.port>
+    <webserver.port>9081</webserver.port>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <!-- 设定主仓库，按设定顺序进行查找。 -->
