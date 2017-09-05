@@ -24,8 +24,8 @@
   <repositories>
 
     <repository>
-      <id>ims-repos</id>
-      <name>Jeesite Repository</name>
+      <id>core-repos</id>
+      <name>core Repository</name>
       <url>http://maven.aliyun.com/nexus/content/groups/public</url>
     </repository>
 
