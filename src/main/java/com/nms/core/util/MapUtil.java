@@ -1,11 +1,7 @@
-package com.njarston.datamodule.util;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package com.nms.core.util;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * Created by syx on 17-6-13.

@@ -1,4 +1,4 @@
-package com.njarston.datamodule.service;
+package com.nms.core.service;
 
 import org.springframework.stereotype.Service;
 

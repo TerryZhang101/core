@@ -1,6 +1,6 @@
-package com.njarston.datamodule.service.impl;
+package com.nms.core.service.impl;
 
-import com.njarston.datamodule.service.service;
+import com.nms.core.service.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
