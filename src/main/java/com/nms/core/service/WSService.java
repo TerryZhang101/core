@@ -7,8 +7,8 @@ import java.util.Map;
 /**
  * Created by syx on 17/8/3.
  */
-@Service("websocketService")
-public interface service {
+@org.springframework.stereotype.Service("websocketService")
+public interface WSService {
 
     Map proxyQuery(String data);
 

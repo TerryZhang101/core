@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.njarston.datamodule</groupId>
+  <groupId>com.nms.core</groupId>
   <artifactId>core</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -16,7 +16,7 @@
     <!-- log4j日志文件管理包版本 -->
     <slf4j.version>1.7.7</slf4j.version>
     <log4j.version>1.2.17</log4j.version>
-    <jetty.version>7.6.14.v20131031</jetty.version>
+    <jetty.version>9.4.6.v20170531</jetty.version>
     <webserver.port>9081</webserver.port>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -251,17 +251,15 @@
       <artifactId>commons-lang3</artifactId>
       <version>3.6</version>
     </dependency>
-
     <dependency>
-      <groupId>org.java-websocket</groupId>
-      <artifactId>Java-WebSocket</artifactId>
-      <version>1.3.4</version>
-      <scope>test</scope>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>3.6.0</version>
     </dependency>
     <dependency>
-      <groupId>org.java-websocket</groupId>
-      <artifactId>Java-WebSocket</artifactId>
-      <version>RELEASE</version>
+      <groupId>com.squareup.okhttp</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>2.7.5</version>
     </dependency>
 
   </dependencies>
@@ -279,34 +277,24 @@
 
       <!-- jetty插件 -->
       <plugin>
-        <groupId>org.mortbay.jetty</groupId>
+        <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>${jetty.version}</version>
         <configuration>
-          <connectors>
-            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-              <port>${webserver.port}</port>
-            </connector>
-          </connectors>
-          <webAppConfig>
+          <httpConnector>
+            <port>${webserver.port}</port>
+          </httpConnector>
+          <webApp>
             <contextPath>/${project.artifactId}</contextPath>
-          </webAppConfig>
-          <systemProperties>
-            <systemProperty>
-              <name>org.mortbay.util.URI.charset</name>
-              <value>${project.build.sourceEncoding}</value>
-            </systemProperty>
-          </systemProperties>
-          <stopPort>9090</stopPort>
-          <stopKey>stop</stopKey>
+          </webApp>
         </configuration>
       </plugin>
     </plugins>
     <resources>
-        <resource>
-            <directory>src/main/resources</directory>
-        </resource>
-        <resource>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
         <directory>src/main/java</directory>
         <includes>
           <include>**/*.xml</include>

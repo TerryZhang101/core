@@ -1,6 +1,6 @@
 package com.nms.core.service.impl;
 
-import com.nms.core.service.service;
+import com.nms.core.service.WSService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,9 +10,9 @@ import java.util.Map;
     /**
  * Created by ddk on 17/8/17.
  */
-public class serviceImpl implements service {
+public class ServiceImpl implements WSService {
 
-    private final static Logger logger = LoggerFactory.getLogger(serviceImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(ServiceImpl.class);
 
 
 
