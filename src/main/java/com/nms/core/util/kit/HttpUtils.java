@@ -84,7 +84,7 @@ public final class HttpUtils {
             delegateToUse = new OkHttpDelegate();
         }
         // com.jfinal.kit.HttpKit
-        else if (ClassUtils.isPresent("com.njarston.qz.util.kit.HttpKit", HttpUtils.class.getClassLoader())) {
+        else if (ClassUtils.isPresent("com.nms.core.util.kit.HttpKit", HttpUtils.class.getClassLoader())) {
             delegateToUse = new HttpKitDelegate();
         }
         delegate = delegateToUse;
