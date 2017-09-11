@@ -11,7 +11,6 @@ public class SettingHelper{
 
 	private SettingHelper() {
 		try {
-			//InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("setting.properties");
 			p.load(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream("setting.properties"), "UTF-8"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
