@@ -1,7 +1,7 @@
 -- ----------------------------
 -- Table structure for c_cust_info
 -- ----------------------------
-DROP TABLE IF EXISTS `c_cust_info`;
+DROP TABLE IF EXISTS c_cust_info;
 CREATE TABLE c_cust_info
 (
     id int(11) PRIMARY KEY NOT NULL COMMENT '客户号' AUTO_INCREMENT,
