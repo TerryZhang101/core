@@ -1,5 +1,6 @@
 -- ----------------------------
 -- Table structure for c_cust_info
+-- 描述客户的基本信息
 -- ----------------------------
 DROP TABLE IF EXISTS c_cust_info;
 CREATE TABLE c_cust_info
