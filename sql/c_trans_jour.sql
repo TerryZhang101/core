@@ -30,6 +30,6 @@ CREATE TABLE c_trans_jour
     response varchar(8) NOT NULL COMMENT '响应吗',
     respdesc varchar(80) NOT NULL COMMENT '响应信息',
 
-    PRIMARY KEY (set_date,oper_no,seqno)
+    PRIMARY KEY (set_date,oper_no,seqno,sub_seqno)
 )
   ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='交易流水表';
