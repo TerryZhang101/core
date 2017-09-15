@@ -13,7 +13,7 @@ CREATE TABLE c_cust_info
     star_lvl int(11) NOT NULL COMMENT '星级：1=1星；2=2星；3=3星；4=4星；5=5星',
     area_belong varchar(10) COMMENT '归属区域代码',
     state int(11) NOT NULL COMMENT '会员状态：0=正常；1=冻结；2=注销',
-    up_id int(11) NOT NULL COMMENT '上级会员号',
+    up_id int(11) DEFAULT NULL COMMENT '上级会员号',
     rec_id int(11) COMMENT '推荐会员号',
     head_quarter varchar(10) COMMENT '归属城市总部',
     address varchar(255) COMMENT '地址',
