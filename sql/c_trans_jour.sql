@@ -16,7 +16,7 @@ CREATE TABLE c_trans_jour
     ext_seqno varchar(32) NOT NULL COMMENT '外部系统、其他渠道流水号',
     acct_no varchar(32)  NOT NULL COMMENT '账号',
     acct_seqno varchar(8)  NOT NULL COMMENT '账号序号',
-    dc_flag varchar(2)  NOT NULL COMMENT '借贷标志: D=借；C=贷',
+    dc_flag int(11)  NOT NULL COMMENT '借贷标志: 1=借；2=贷',
     trans_amt decimal(16,2) DEFAULT 0.00 COMMENT '交易金额',
     opp_acct_no varchar(32)  DEFAULT NULL COMMENT '对方账号',
     abs varchar(60)  DEFAULT NULL COMMENT '摘要',
