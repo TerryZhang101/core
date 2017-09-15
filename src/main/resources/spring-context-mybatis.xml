@@ -48,7 +48,7 @@
     </bean>
 
     <bean id="configurer_uat" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.nms.core.dao.local"/>
+        <property name="basePackage" value="com.nms.core.dao"/>
         <property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate_uat"/>
     </bean>
 
