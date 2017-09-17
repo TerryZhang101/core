@@ -18,7 +18,7 @@ CREATE TABLE c_cust_info
     head_quarter varchar(10) COMMENT '归属城市总部',
     address varchar(255) COMMENT '地址',
     type int(11) NOT NULL COMMENT '会员类型：1=普通会员；2=诺星；3=诺商',
-    login_pwd varchar(255) NOT NULL COMMENT '登录密码',
+    logon_pwd varchar(255) NOT NULL COMMENT '登录密码',
     tran_pwd varchar(255) NOT NULL COMMENT '交易密码',
     reg_date datetime NOT NULL COMMENT '注册日期',
     due_date date COMMENT '证件有效期YYYY-MM-DD；长期9999-12-31'';',
