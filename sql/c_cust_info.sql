@@ -29,7 +29,7 @@ CREATE TABLE c_cust_info
     legal_person varchar(64) COMMENT '法人姓名（诺商认证使用）',
     regist_addr varchar(255) COMMENT '注册地址（诺商认证使用）',
     auth_state int(11) COMMENT '诺商认证状态 0=审核通过；1=审核不通过；2=待审核（诺商认证使用）',
-    img_lic_url varchar(255) COMMENT '营业执照图片URL（诺商认证使用）',
+    img_busi_lic_url varchar(255) COMMENT '营业执照图片URL（诺商认证使用）',
     busi_lic_due date COMMENT '营业执照有效期：YYYY-MM-DD；长期9999-12-31'
 )
 
