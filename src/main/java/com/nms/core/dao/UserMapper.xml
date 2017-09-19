@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nms.core.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.nms.core.entity.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="cert_no" property="cert_no" jdbcType="VARCHAR" />
+    <result column="mobile_no" property="mobile_no" jdbcType="VARCHAR" />
+    <result column="star_lvl" property="star_lvl" jdbcType="INTEGER" />
+    <result column="area_belong" property="area_belong" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="up_id" property="up_id" jdbcType="INTEGER" />
+    <result column="rec_id" property="rec_id" jdbcType="INTEGER" />
+    <result column="head_quarter" property="head_quarter" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="logon_pwd" property="logon_pwd" jdbcType="VARCHAR" />
+    <result column="tran_pwd" property="tran_pwd" jdbcType="VARCHAR" />
+    <result column="reg_date" property="reg_date" jdbcType="TIMESTAMP" />
+    <result column="due_date" property="due_date" jdbcType="DATE" />
+    <result column="img_front_url" property="img_front_url" jdbcType="VARCHAR" />
+    <result column="img_back_url" property="img_back_url" jdbcType="VARCHAR" />
+    <result column="corpor_name" property="corpor_name" jdbcType="VARCHAR" />
+    <result column="regist_no" property="regist_no" jdbcType="VARCHAR" />
+    <result column="legal_person" property="legal_person" jdbcType="VARCHAR" />
+    <result column="regist_addr" property="regist_addr" jdbcType="VARCHAR" />
+    <result column="auth_state" property="auth_state" jdbcType="INTEGER" />
+    <result column="img_busi_lic_url" property="img_busi_lic_url" jdbcType="VARCHAR" />
+    <result column="busi_lic_due" property="busi_lic_due" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, alias, cert_no, mobile_no, star_lvl, area_belong, state, up_id, rec_id, 
+    head_quarter, address, type, logon_pwd, tran_pwd, reg_date, due_date, img_front_url, 
+    img_back_url, corpor_name, regist_no, legal_person, regist_addr, auth_state, img_busi_lic_url, 
+    busi_lic_due
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_cust_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_cust_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nms.core.entity.User" >
+    insert into c_cust_info (id, name, alias, 
+      cert_no, mobile_no, star_lvl, 
+      area_belong, state, up_id, 
+      rec_id, head_quarter, address, 
+      type, logon_pwd, tran_pwd, 
+      reg_date, due_date, img_front_url, 
+      img_back_url, corpor_name, regist_no, 
+      legal_person, regist_addr, auth_state, 
+      img_busi_lic_url, busi_lic_due)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, 
+      #{cert_no,jdbcType=VARCHAR}, #{mobile_no,jdbcType=VARCHAR}, #{star_lvl,jdbcType=INTEGER}, 
+      #{area_belong,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{up_id,jdbcType=INTEGER}, 
+      #{rec_id,jdbcType=INTEGER}, #{head_quarter,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{logon_pwd,jdbcType=VARCHAR}, #{tran_pwd,jdbcType=VARCHAR}, 
+      #{reg_date,jdbcType=TIMESTAMP}, #{due_date,jdbcType=DATE}, #{img_front_url,jdbcType=VARCHAR}, 
+      #{img_back_url,jdbcType=VARCHAR}, #{corpor_name,jdbcType=VARCHAR}, #{regist_no,jdbcType=VARCHAR}, 
+      #{legal_person,jdbcType=VARCHAR}, #{regist_addr,jdbcType=VARCHAR}, #{auth_state,jdbcType=INTEGER}, 
+      #{img_busi_lic_url,jdbcType=VARCHAR}, #{busi_lic_due,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nms.core.entity.User" useGeneratedKeys="true" keyProperty="id">
+    insert into c_cust_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="cert_no != null" >
+        cert_no,
+      </if>
+      <if test="mobile_no != null" >
+        mobile_no,
+      </if>
+      <if test="star_lvl != null" >
+        star_lvl,
+      </if>
+      <if test="area_belong != null" >
+        area_belong,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="up_id != null" >
+        up_id,
+      </if>
+      <if test="rec_id != null" >
+        rec_id,
+      </if>
+      <if test="head_quarter != null" >
+        head_quarter,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="logon_pwd != null" >
+        logon_pwd,
+      </if>
+      <if test="tran_pwd != null" >
+        tran_pwd,
+      </if>
+      <if test="reg_date != null" >
+        reg_date,
+      </if>
+      <if test="due_date != null" >
+        due_date,
+      </if>
+      <if test="img_front_url != null" >
+        img_front_url,
+      </if>
+      <if test="img_back_url != null" >
+        img_back_url,
+      </if>
+      <if test="corpor_name != null" >
+        corpor_name,
+      </if>
+      <if test="regist_no != null" >
+        regist_no,
+      </if>
+      <if test="legal_person != null" >
+        legal_person,
+      </if>
+      <if test="regist_addr != null" >
+        regist_addr,
+      </if>
+      <if test="auth_state != null" >
+        auth_state,
+      </if>
+      <if test="img_busi_lic_url != null" >
+        img_busi_lic_url,
+      </if>
+      <if test="busi_lic_due != null" >
+        busi_lic_due,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="cert_no != null" >
+        #{cert_no,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile_no != null" >
+        #{mobile_no,jdbcType=VARCHAR},
+      </if>
+      <if test="star_lvl != null" >
+        #{star_lvl,jdbcType=INTEGER},
+      </if>
+      <if test="area_belong != null" >
+        #{area_belong,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="up_id != null" >
+        #{up_id,jdbcType=INTEGER},
+      </if>
+      <if test="rec_id != null" >
+        #{rec_id,jdbcType=INTEGER},
+      </if>
+      <if test="head_quarter != null" >
+        #{head_quarter,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="logon_pwd != null" >
+        #{logon_pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="tran_pwd != null" >
+        #{tran_pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="reg_date != null" >
+        #{reg_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="due_date != null" >
+        #{due_date,jdbcType=DATE},
+      </if>
+      <if test="img_front_url != null" >
+        #{img_front_url,jdbcType=VARCHAR},
+      </if>
+      <if test="img_back_url != null" >
+        #{img_back_url,jdbcType=VARCHAR},
+      </if>
+      <if test="corpor_name != null" >
+        #{corpor_name,jdbcType=VARCHAR},
+      </if>
+      <if test="regist_no != null" >
+        #{regist_no,jdbcType=VARCHAR},
+      </if>
+      <if test="legal_person != null" >
+        #{legal_person,jdbcType=VARCHAR},
+      </if>
+      <if test="regist_addr != null" >
+        #{regist_addr,jdbcType=VARCHAR},
+      </if>
+      <if test="auth_state != null" >
+        #{auth_state,jdbcType=INTEGER},
+      </if>
+      <if test="img_busi_lic_url != null" >
+        #{img_busi_lic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="busi_lic_due != null" >
+        #{busi_lic_due,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nms.core.entity.User" >
+    update c_cust_info
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="cert_no != null" >
+        cert_no = #{cert_no,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile_no != null" >
+        mobile_no = #{mobile_no,jdbcType=VARCHAR},
+      </if>
+      <if test="star_lvl != null" >
+        star_lvl = #{star_lvl,jdbcType=INTEGER},
+      </if>
+      <if test="area_belong != null" >
+        area_belong = #{area_belong,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="up_id != null" >
+        up_id = #{up_id,jdbcType=INTEGER},
+      </if>
+      <if test="rec_id != null" >
+        rec_id = #{rec_id,jdbcType=INTEGER},
+      </if>
+      <if test="head_quarter != null" >
+        head_quarter = #{head_quarter,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="logon_pwd != null" >
+        logon_pwd = #{logon_pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="tran_pwd != null" >
+        tran_pwd = #{tran_pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="reg_date != null" >
+        reg_date = #{reg_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="due_date != null" >
+        due_date = #{due_date,jdbcType=DATE},
+      </if>
+      <if test="img_front_url != null" >
+        img_front_url = #{img_front_url,jdbcType=VARCHAR},
+      </if>
+      <if test="img_back_url != null" >
+        img_back_url = #{img_back_url,jdbcType=VARCHAR},
+      </if>
+      <if test="corpor_name != null" >
+        corpor_name = #{corpor_name,jdbcType=VARCHAR},
+      </if>
+      <if test="regist_no != null" >
+        regist_no = #{regist_no,jdbcType=VARCHAR},
+      </if>
+      <if test="legal_person != null" >
+        legal_person = #{legal_person,jdbcType=VARCHAR},
+      </if>
+      <if test="regist_addr != null" >
+        regist_addr = #{regist_addr,jdbcType=VARCHAR},
+      </if>
+      <if test="auth_state != null" >
+        auth_state = #{auth_state,jdbcType=INTEGER},
+      </if>
+      <if test="img_busi_lic_url != null" >
+        img_busi_lic_url = #{img_busi_lic_url,jdbcType=VARCHAR},
+      </if>
+      <if test="busi_lic_due != null" >
+        busi_lic_due = #{busi_lic_due,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nms.core.entity.User" >
+    update c_cust_info
+    set name = #{name,jdbcType=VARCHAR},
+      alias = #{alias,jdbcType=VARCHAR},
+      cert_no = #{cert_no,jdbcType=VARCHAR},
+      mobile_no = #{mobile_no,jdbcType=VARCHAR},
+      star_lvl = #{star_lvl,jdbcType=INTEGER},
+      area_belong = #{area_belong,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      up_id = #{up_id,jdbcType=INTEGER},
+      rec_id = #{rec_id,jdbcType=INTEGER},
+      head_quarter = #{head_quarter,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      logon_pwd = #{logon_pwd,jdbcType=VARCHAR},
+      tran_pwd = #{tran_pwd,jdbcType=VARCHAR},
+      reg_date = #{reg_date,jdbcType=TIMESTAMP},
+      due_date = #{due_date,jdbcType=DATE},
+      img_front_url = #{img_front_url,jdbcType=VARCHAR},
+      img_back_url = #{img_back_url,jdbcType=VARCHAR},
+      corpor_name = #{corpor_name,jdbcType=VARCHAR},
+      regist_no = #{regist_no,jdbcType=VARCHAR},
+      legal_person = #{legal_person,jdbcType=VARCHAR},
+      regist_addr = #{regist_addr,jdbcType=VARCHAR},
+      auth_state = #{auth_state,jdbcType=INTEGER},
+      img_busi_lic_url = #{img_busi_lic_url,jdbcType=VARCHAR},
+      busi_lic_due = #{busi_lic_due,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ <select id="selectByMobile" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_cust_info
+    where mobile_no = #{recmd_mobile_no,jdbcType=VARCHAR}
+  </select>
+ <select id="selectByMobileAndLogonPwd" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_cust_info
+    where mobile_no = #{mobile_no,jdbcType=VARCHAR}
+    and logon_pwd = #{logon_pwd,jdbcType=VARCHAR}
+  </select>
+  <update id="updateLogonPwdById" >
+    update c_cust_info
+    set 
+      logon_pwd = #{logon_pwd,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ <select id="selectByIdAndLogonPwd" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_cust_info
+    where id = #{id,jdbcType=INTEGER}
+    and logon_pwd = #{logon_pwd,jdbcType=VARCHAR}
+  </select>
+ <select id="selectByIdAndTranPwd" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from c_cust_info
+    where id = #{id,jdbcType=INTEGER}
+    and tran_pwd = #{tran_pwd,jdbcType=VARCHAR}
+  </select>
+  <update id="updateTranPwdById" >
+    update c_cust_info
+    set 
+      tran_pwd = #{tran_pwd,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateMobileById" >
+    update c_cust_info
+    set 
+      mobile_no = #{mobile_no,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
