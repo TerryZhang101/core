@@ -28,7 +28,7 @@ import com.nms.core.util.SignUtil;
  * @date 2017年9月13日
  */
 @RestController
-@RequestMapping("/qz")
+@RequestMapping("/core")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
