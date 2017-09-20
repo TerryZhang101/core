@@ -8,7 +8,7 @@ CREATE TABLE c_subject
     sub_code varchar(8)  NOT NULL COMMENT '科目编号',
     sub_name varchar(60)  NOT NULL COMMENT '科目名称',
     sub_level int(11) NOT NULL COMMENT '科目级别：1=一级科目；2=二级科目',
-    super_sub_code varchar(8)  NOT NULL COMMENT '上级科目编号',
+    super_sub_code varchar(8)  DEFAULT NULL COMMENT '上级科目编号',
     sub_attr int(11) NOT NULL COMMENT '科目性质：1=资产类；2=负债类；3=资产负债共同类；4=所有者权益类；5=收入类；6=支出类；0=表外科目',
     bal_direct int(11) NOT NULL COMMENT '科目余额方向：0=余额双方反映；1=余额借方反映；2=余额贷方反映',
     red_flag int(11) NOT NULL COMMENT '允许余额反向：0=允许；1=不允许',
