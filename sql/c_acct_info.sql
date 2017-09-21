@@ -21,7 +21,7 @@ CREATE TABLE c_acct_info
     acct_no varchar(32)  NOT NULL COMMENT '账号',
     acct_seqno varchar(8)  NOT NULL COMMENT '账号序号',
     cust_no varchar(8)  NOT NULL COMMENT '客户号',
-    cust_name varchar(64)  NOT NULL COMMENT '客户名称',
+    cust_name varchar(64)  DEFAULT NULL COMMENT '客户名称',
     open_bran_code varchar(10)  DEFAULT NULL COMMENT '开户机构',
     acct_bran_code varchar(10)  DEFAULT NULL COMMENT '账户机构，目前与开户机构一致',
     open_date datetime NOT NULL COMMENT '开户日期',
