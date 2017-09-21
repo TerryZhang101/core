@@ -24,7 +24,29 @@
     </bean>
 
     <!-- 开启注解 -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!-- FastJsonHttpMessageConverter 来替换 Spring MVC 默认的 HttpMessageConverter 以提高 @RestController @ResponseBody @RequestBody 注解的 JSON序列化速度 -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="fastJsonConfig" ref="fastJsonConfig"></property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean id="fastJsonConfig" class="com.alibaba.fastjson.support.config.FastJsonConfig">
+        <!--   自定义配置...   -->
+        <property name="serializerFeatures">
+            <list>
+                <value>WriteDateUseDateFormat</value>
+                <value>WriteMapNullValue</value>
+                <value>WriteNullStringAsEmpty</value>
+                <value>WriteNullNumberAsZero</value>
+                <value>WriteNullBooleanAsFalse</value>
+                <value>PrettyFormat</value>
+                <value>MapSortField</value>
+            </list>
+        </property>
+    </bean>
 
     <mvc:resources mapping="/css/**" location="/css/" cache-period="31536000"/>
     <mvc:resources mapping="/images/**" location="/images/" cache-period="31536000"/>
