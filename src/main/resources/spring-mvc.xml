@@ -54,6 +54,7 @@
             <!-- 默认所有的请求都进行拦截 -->
             <mvc:mapping path="/acc/**"/>
             <mvc:mapping path="/mem/**"/>
+            <mvc:mapping path="/sys/**"/>
             <bean class="com.nms.core.interceptor.HTTPRequestLoggerInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
@@ -63,14 +64,4 @@
 
     <bean id="springApplicationContext" class="com.nms.core.spring.SpringApplicationContext"></bean>
     
-    <!-- 拦截器 -->
-	<!-- 
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<bean class="com.nms.core.interceptor.SignInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors>
-	 -->
-
 </beans>
