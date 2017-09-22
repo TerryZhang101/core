@@ -5,15 +5,21 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.nms.core.dao.AccountMapper;
 import com.nms.core.dao.UserMapper;
+import com.nms.core.entity.Account;
 import com.nms.core.entity.User;
 import com.nms.core.enums.ErrorCodeEnum;
 import com.nms.core.exception.CoreException;
 import com.nms.core.service.UserService;
 import com.nms.core.util.DateUtil;
+import com.nms.core.util.Des3Util;
+import com.nms.core.util.SequenceUtil;
+import com.nms.core.util.helper.SettingHelper;
 import com.nms.core.util.kit.HashKit;
 
 /**
@@ -26,6 +32,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;
 	
+	@Autowired
+	private SequenceUtil sequenceUtil;
+	
+	@Autowired
+	private AccountMapper accountMapper;
+	
+	@Transactional
 	@Override
 	public Integer register(JSONObject jsonObj) {
 		User user = JSON.toJavaObject(jsonObj, User.class);
@@ -43,6 +56,60 @@ public class UserServiceImpl implements UserService {
         user.setType(1);
         user.setReg_date(new Date());
         userMapper.insertSelective(user);
+        //生成3个账户：诺宝账户、诺券账户、诺积分账户
+        //账户生成规则：5位机构号+2位账户类型+5位科目+8位顺序号，如：一个诺宝账户70001012010100000001
+        //账户类型：01=诺宝账户；02=诺卷账户；03=诺积分账户；04=内部账户
+        //科目：诺宝账户20101 诺券账户20202 诺积分账户20301
+        String organ_id = jsonObj.getString("organ_id");//机构号：法人代码（机构代码）
+        Account acct = new Account();
+        String cust_no = String.valueOf(user.getId());
+        String cust_name = user.getName()==null?"":user.getName();
+        acct.setCust_no(cust_no);
+        acct.setCust_name(cust_name);
+        acct.setOpen_date(new Date());
+        acct.setStop_payment_type(0);//止付标志：0=正常；1=止付
+        acct.setAcct_status(0);//帐户状态：0=正常；1=销户
+        String des3Key = SettingHelper.getSetting("des3Key");
+        //生成诺宝账户
+        String acctNo1 = organ_id + "0120101" + sequenceUtil.getNextAcctSeqNo("01");
+        String subAcctSeqNo1 = sequenceUtil.getNextSubAcctSeqNo(acctNo1);
+        acct.setAcct_no(acctNo1);
+        acct.setAcct_seqno(subAcctSeqNo1);
+        acct.setAcct_type("01");
+        acct.setSub_code("20101");
+        /*DAC安全码:
+		帐号（acct_no）|帐户序号（acct_seqno）|币种（cur_code）|客户姓名(cust_name)|客户编号(cust_no) 
+        |最后交易日期(last_trans_date)|最后账务日期(last_acct_date)|余额（acct_bal）|昨日余额(acct_pre_bal) 
+		|利息积数（acct_accum）|止付标志（stop_payment_type）|帐户状态（acct_status）*/
+        String dac1 = acctNo1+"|"+subAcctSeqNo1+"||"+cust_name+"|"+cust_no+"|||0.00||0.00|0|0";
+        System.out.println("dac1:"+dac1);
+        System.out.println("dac1Hash:"+HashKit.sha256(dac1));
+        acct.setDac(Des3Util.encString(des3Key, HashKit.sha256(dac1)));
+        accountMapper.insertSelective(acct);
+        //生成诺券账户
+        String acctNo2 = organ_id + "0220202" + sequenceUtil.getNextAcctSeqNo("02");
+        String subAcctSeqNo2 = sequenceUtil.getNextSubAcctSeqNo(acctNo2);
+        acct.setAcct_no(acctNo2);
+        acct.setAcct_seqno(subAcctSeqNo2);
+        acct.setAcct_type("02");
+        acct.setSub_code("20202");
+        String dac2 = acctNo2+"|"+subAcctSeqNo2+"||"+cust_name+"|"+cust_no+"|||0.00||0.00|0|0";
+        System.out.println("dac2:"+dac2);
+        System.out.println("dac2Hash:"+HashKit.sha256(dac2));
+        acct.setDac(Des3Util.encString(des3Key, HashKit.sha256(dac2)));
+        accountMapper.insertSelective(acct);
+        //生成诺积分账户
+        String acctNo3 = organ_id + "0320301" + sequenceUtil.getNextAcctSeqNo("03");
+        String subAcctSeqNo3 = sequenceUtil.getNextSubAcctSeqNo(acctNo3);
+        acct.setAcct_no(acctNo3);
+        acct.setAcct_seqno(subAcctSeqNo3);
+        acct.setAcct_type("03");
+        acct.setSub_code("20301");
+        String dac3 = acctNo3+"|"+subAcctSeqNo3+"||"+cust_name+"|"+cust_no+"|||0.00||0.00|0|0";
+        System.out.println("dac3:"+dac3);
+        System.out.println("dac3Hash:"+HashKit.sha256(dac3));
+        acct.setDac(Des3Util.encString(des3Key, HashKit.sha256(dac3)));
+        accountMapper.insertSelective(acct);
 		return user.getId();
 	}
 
