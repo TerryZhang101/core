@@ -53,6 +53,7 @@
         <mvc:interceptor>
             <!-- 默认所有的请求都进行拦截 -->
             <mvc:mapping path="/acc/**"/>
+            <mvc:mapping path="/mem/**"/>
             <bean class="com.nms.core.interceptor.HTTPRequestLoggerInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
