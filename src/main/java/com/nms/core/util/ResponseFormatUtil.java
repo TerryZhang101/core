@@ -1,10 +1,10 @@
 package com.nms.core.util;
 
+import com.nms.core.enums.ErrorCodeEnum;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.nms.core.enums.ErrorCodeEnum;
 
 /**
  * @author cja
@@ -23,6 +23,7 @@ public class ResponseFormatUtil{
 			map.put("list", list);
 		}
 		map.put("ec", "0");
+		map.put("em", "SUCCESS");
 		return map;
 	}
 	
@@ -46,6 +47,7 @@ public class ResponseFormatUtil{
 		}
 		
 		map.put("ec", "0");
+		map.put("em", "SUCCESS");
 		return map;
 	}
 	
@@ -53,6 +55,7 @@ public class ResponseFormatUtil{
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("entity", t);
 		map.put("ec", "0");
+		map.put("em", "SUCCESS");
 		return map;
 	}
 	

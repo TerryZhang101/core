@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="com.nms.core.dao.SystemMapper">
+
+	<insert id="journal" parameterType="java.util.HashMap">
+		INSERT INTO
+			NP_CSTLOG (
+				NCL_LOGNO,
+				NCL_LOGTIME,
+				NCL_LOGBEGTIME,
+				NCL_LOGENDTIME,
+				NCL_CSTNO,
+				NCL_CARDNO,
+				NCL_TRANCOD,
+				NCL_IP,
+				NCL_OPRRLT,
+				NCL_BANKCODE,
+				NCL_LOG1,
+				NCL_PRONO,
+				NCL_LOG2,
+				NCL_LOG3,
+				NCL_LOG4
+			)
+		VALUES
+			(
+				#{NCL_LOGNO},
+				#{NCL_LOGTIME},
+				#{NCL_LOGBEGTIME},
+				#{NCL_LOGENDTIME},
+				#{NCL_CSTNO},
+				#{NCL_CARDNO},
+				#{NCL_TRANCOD},
+				#{NCL_IP},
+				#{NCL_OPRRLT},
+				#{NCL_BANKCODE},
+				#{NCL_LOG1},
+				#{NCL_PRONO},
+				#{NCL_LOG2},
+				#{NCL_LOG3},
+				#{NCL_LOG4}
+			)
+	</insert>
+
+</mapper>

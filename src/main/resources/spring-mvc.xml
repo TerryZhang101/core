@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -24,11 +24,53 @@
     </bean>
 
     <!-- 开启注解 -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!-- FastJsonHttpMessageConverter 来替换 Spring MVC 默认的 HttpMessageConverter 以提高 @RestController @ResponseBody @RequestBody 注解的 JSON序列化速度 -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="fastJsonConfig" ref="fastJsonConfig"></property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <bean id="fastJsonConfig" class="com.alibaba.fastjson.support.config.FastJsonConfig">
+        <!--   自定义配置...   -->
+        <property name="serializerFeatures">
+            <list>
+                <value>WriteDateUseDateFormat</value>
+                <value>WriteMapNullValue</value>
+                <value>WriteNullStringAsEmpty</value>
+                <value>WriteNullNumberAsZero</value>
+                <value>WriteNullBooleanAsFalse</value>
+                <value>PrettyFormat</value>
+                <value>MapSortField</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 默认所有的请求都进行拦截 -->
+            <mvc:mapping path="/acc/**"/>
+            <mvc:mapping path="/mem/**"/>
+            <bean class="com.nms.core.interceptor.HTTPRequestLoggerInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <mvc:resources mapping="/css/**" location="/css/" cache-period="31536000"/>
     <mvc:resources mapping="/images/**" location="/images/" cache-period="31536000"/>
 
     <bean id="springApplicationContext" class="com.nms.core.spring.SpringApplicationContext"></bean>
+    
+    <!-- 拦截器 -->
+	<!-- 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.nms.core.interceptor.SignInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	 -->
 
 </beans>

@@ -1,10 +1,19 @@
 
 package com.nms.core.util.kit;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+
+import java.text.DecimalFormat;
+import java.util.Date;
+
 /**
  * StrKit.
  */
 public class StrKit {
+
+	private static int nodeSeq = 0;
+
+	private static DecimalFormat decimalFormat = new DecimalFormat("000000");
 	
 	/**
 	 * 首字母变小写
@@ -142,6 +151,18 @@ public class StrKit {
 	
 	public static String getRandomUUID() {
 		return java.util.UUID.randomUUID().toString().replace("-", "");
+	}
+
+	public synchronized static String generateFlowNo(String organ_id){
+		String currentTimeStr = DateFormatUtils.format(new Date(), "yyyyMMddHHmmss");
+		String prepay_id = currentTimeStr + organ_id + decimalFormat.format(nodeSeq);
+		if(nodeSeq >= 999999){
+			nodeSeq = 0;
+		}else{
+			nodeSeq++;
+		}
+
+		return prepay_id;
 	}
 }
 

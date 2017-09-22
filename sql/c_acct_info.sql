@@ -38,6 +38,7 @@ CREATE TABLE c_acct_info
     acct_pre_bal decimal(16,2) DEFAULT NULL COMMENT '昨日余额-最后帐务日期上日余额',
     then_bal decimal(16,2) DEFAULT NULL COMMENT '本日差额-最后帐务日期本日差额',
     bal_direct int(11) DEFAULT NULL COMMENT '余额方向（保留）',
+    acct_accum decimal(16,2) DEFAULT 0.00 COMMENT '利息基数',
     trans_count int(11) DEFAULT '0' COMMENT '除了查询交易外其他交易每次++',
     dac varchar(32)  NOT NULL COMMENT 'DAC安全码',
     ctrl_flag varchar(32)  DEFAULT NULL COMMENT '控制位（保留）',
