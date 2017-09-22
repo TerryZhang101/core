@@ -82,8 +82,8 @@ public class UserServiceImpl implements UserService {
         |最后交易日期(last_trans_date)|最后账务日期(last_acct_date)|余额（acct_bal）|昨日余额(acct_pre_bal) 
 		|利息积数（acct_accum）|止付标志（stop_payment_type）|帐户状态（acct_status）*/
         String dac1 = acctNo1+"|"+subAcctSeqNo1+"||"+cust_name+"|"+cust_no+"|||0.00||0.00|0|0";
-        System.out.println("dac1:"+dac1);
-        System.out.println("dac1Hash:"+HashKit.sha256(dac1));
+//        System.out.println("dac1:"+dac1);
+//        System.out.println("dac1Hash:"+HashKit.sha256(dac1));
         acct.setDac(Des3Util.encString(des3Key, HashKit.sha256(dac1)));
         accountMapper.insertSelective(acct);
         //生成诺券账户
@@ -94,8 +94,8 @@ public class UserServiceImpl implements UserService {
         acct.setAcct_type("02");
         acct.setSub_code("20202");
         String dac2 = acctNo2+"|"+subAcctSeqNo2+"||"+cust_name+"|"+cust_no+"|||0.00||0.00|0|0";
-        System.out.println("dac2:"+dac2);
-        System.out.println("dac2Hash:"+HashKit.sha256(dac2));
+//        System.out.println("dac2:"+dac2);
+//        System.out.println("dac2Hash:"+HashKit.sha256(dac2));
         acct.setDac(Des3Util.encString(des3Key, HashKit.sha256(dac2)));
         accountMapper.insertSelective(acct);
         //生成诺积分账户
@@ -106,8 +106,8 @@ public class UserServiceImpl implements UserService {
         acct.setAcct_type("03");
         acct.setSub_code("20301");
         String dac3 = acctNo3+"|"+subAcctSeqNo3+"||"+cust_name+"|"+cust_no+"|||0.00||0.00|0|0";
-        System.out.println("dac3:"+dac3);
-        System.out.println("dac3Hash:"+HashKit.sha256(dac3));
+//        System.out.println("dac3:"+dac3);
+//        System.out.println("dac3Hash:"+HashKit.sha256(dac3));
         acct.setDac(Des3Util.encString(des3Key, HashKit.sha256(dac3)));
         accountMapper.insertSelective(acct);
 		return user.getId();
