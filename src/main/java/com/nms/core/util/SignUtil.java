@@ -41,15 +41,13 @@ public class SignUtil {
 	 * @return
 	 * @throws CoreException
 	 */
-	public static String sign(String toJSONString) throws CoreException{
-		Map<String,String> responseMap = JSON.toJavaObject(JSONObject.parseObject(toJSONString), Map.class);
+	public static void sign(Map<String,Object> responseMap) throws CoreException{
 		String signFlag = SettingHelper.getSetting("signFlag");
 		if("1".equals(signFlag)){
 			String nonce_str = StrKit.getRandomUUID();
 			responseMap.put("nonce_str", nonce_str);
-			String sign = SignKit.createSign(responseMap, key);
+			String sign = SignKit.createSign(JSON.parseObject(JSON.toJSONString(responseMap), Map.class), key);
 			responseMap.put("sign", sign);
 		}
-		return JSON.toJSONString(responseMap);
 	}
 }

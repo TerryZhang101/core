@@ -36,7 +36,7 @@ public class UserController {
     private UserService userService;
     
     @RequestMapping("/mem/register")
-    public void register(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> register(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	logger.info(request.getRequestURI()+" ==> "+JSON.toJSONString(jsonObj));
     	Map<String,Object> responseMap = new HashMap<String,Object>();
         try {
@@ -54,16 +54,14 @@ public class UserController {
             logger.debug(e.getMessage());
             responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
         }
-        String toJSONString = JSON.toJSONString(responseMap);
-        toJSONString = SignUtil.sign(toJSONString);//签名
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(toJSONString);
-        response.getWriter().flush();
-        logger.info(request.getRequestURI()+" <== "+toJSONString);
+        SignUtil.sign(responseMap);//签名
+        logger.info(request.getRequestURI()+" <== "+JSON.toJSONString(responseMap));
+        return responseMap;
     }
     
+    
     @RequestMapping("/sys/login")
-    public void logon(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> logon(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	logger.info(request.getRequestURI()+" ==> "+JSON.toJSONString(jsonObj));
     	Map<String,Object> responseMap = new HashMap<String,Object>();
     	try {
@@ -80,16 +78,13 @@ public class UserController {
     		logger.debug(e.getMessage());
     		responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
     	}
-    	String toJSONString = JSON.toJSONString(responseMap);
-    	toJSONString = SignUtil.sign(toJSONString);//签名
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(toJSONString);
-    	response.getWriter().flush();
-    	logger.info(request.getRequestURI()+" <== "+toJSONString);
+        SignUtil.sign(responseMap);//签名
+        logger.info(request.getRequestURI()+" <== "+JSON.toJSONString(responseMap));
+        return responseMap;
     }
     
     @RequestMapping("/sys/login_pwd_reset")
-    public void logonPwdReset(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> logonPwdReset(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	logger.info(request.getRequestURI()+" ==> "+JSON.toJSONString(jsonObj));
     	Map<String,Object> responseMap = new HashMap<String,Object>();
     	try {
@@ -106,16 +101,13 @@ public class UserController {
     		logger.debug(e.getMessage());
     		responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
     	}
-    	String toJSONString = JSON.toJSONString(responseMap);
-    	toJSONString = SignUtil.sign(toJSONString);//签名
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(toJSONString);
-    	response.getWriter().flush();
-    	logger.info(request.getRequestURI()+" <== "+toJSONString);
+        SignUtil.sign(responseMap);//签名
+        logger.info(request.getRequestURI()+" <== "+JSON.toJSONString(responseMap));
+        return responseMap;
     }
     
     @RequestMapping("/sys/login_pwd_modify")
-    public void logonPwdModify(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> logonPwdModify(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	logger.info(request.getRequestURI()+" ==> "+JSON.toJSONString(jsonObj));
     	Map<String,Object> responseMap = new HashMap<String,Object>();
     	try {
@@ -132,16 +124,13 @@ public class UserController {
     		logger.debug(e.getMessage());
     		responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
     	}
-    	String toJSONString = JSON.toJSONString(responseMap);
-    	toJSONString = SignUtil.sign(toJSONString);//签名
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(toJSONString);
-    	response.getWriter().flush();
-    	logger.info(request.getRequestURI()+" <== "+toJSONString);
+        SignUtil.sign(responseMap);//签名
+        logger.info(request.getRequestURI()+" <== "+JSON.toJSONString(responseMap));
+        return responseMap;
     }
     
     @RequestMapping("/sys/tran_pwd_modify")
-    public void tranPwdModify(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> tranPwdModify(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	logger.info(request.getRequestURI()+" ==> "+JSON.toJSONString(jsonObj));
     	Map<String,Object> responseMap = new HashMap<String,Object>();
     	try {
@@ -158,16 +147,13 @@ public class UserController {
     		logger.debug(e.getMessage());
     		responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
     	}
-    	String toJSONString = JSON.toJSONString(responseMap);
-    	toJSONString = SignUtil.sign(toJSONString);//签名
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(toJSONString);
-    	response.getWriter().flush();
-    	logger.info(request.getRequestURI()+" <== "+toJSONString);
+        SignUtil.sign(responseMap);//签名
+        logger.info(request.getRequestURI()+" <== "+JSON.toJSONString(responseMap));
+        return responseMap;
     }
     
     @RequestMapping("/sys/tran_pwd_reset")
-    public void tranPwdReset(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> tranPwdReset(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	logger.info(request.getRequestURI()+" ==> "+JSON.toJSONString(jsonObj));
     	Map<String,Object> responseMap = new HashMap<String,Object>();
     	try {
@@ -184,16 +170,13 @@ public class UserController {
     		logger.debug(e.getMessage());
     		responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
     	}
-    	String toJSONString = JSON.toJSONString(responseMap);
-    	toJSONString = SignUtil.sign(toJSONString);//签名
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(toJSONString);
-    	response.getWriter().flush();
-    	logger.info(request.getRequestURI()+" <== "+toJSONString);
+        SignUtil.sign(responseMap);//签名
+        logger.info(request.getRequestURI()+" <== "+JSON.toJSONString(responseMap));
+        return responseMap;
     }
     
     @RequestMapping("/sys/reg_mobile_change")
-    public void regMobileChange(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> regMobileChange(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	logger.info(request.getRequestURI()+" ==> "+JSON.toJSONString(jsonObj));
     	Map<String,Object> responseMap = new HashMap<String,Object>();
     	try {
@@ -210,16 +193,13 @@ public class UserController {
     		logger.debug(e.getMessage());
     		responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
     	}
-    	String toJSONString = JSON.toJSONString(responseMap);
-    	toJSONString = SignUtil.sign(toJSONString);//签名
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(toJSONString);
-    	response.getWriter().flush();
-    	logger.info(request.getRequestURI()+" <== "+toJSONString);
+        SignUtil.sign(responseMap);//签名
+        logger.info(request.getRequestURI()+" <== "+JSON.toJSONString(responseMap));
+        return responseMap;
     }
     
     @RequestMapping("/mem/reg_info_update")
-    public void regInfoUpdate(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> regInfoUpdate(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	logger.info(request.getRequestURI()+" ==> "+JSON.toJSONString(jsonObj));
     	Map<String,Object> responseMap = new HashMap<String,Object>();
     	try {
@@ -236,16 +216,13 @@ public class UserController {
     		logger.debug(e.getMessage());
     		responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
     	}
-    	String toJSONString = JSON.toJSONString(responseMap);
-    	toJSONString = SignUtil.sign(toJSONString);//签名
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(toJSONString);
-    	response.getWriter().flush();
-    	logger.info(request.getRequestURI()+" <== "+toJSONString);
+        SignUtil.sign(responseMap);//签名
+        logger.info(request.getRequestURI()+" <== "+JSON.toJSONString(responseMap));
+        return responseMap;
     }
 
     @RequestMapping("/mem/ns_identify")
-    public void nsIdentify(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> nsIdentify(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	logger.info(request.getRequestURI()+" ==> "+JSON.toJSONString(jsonObj));
     	Map<String,Object> responseMap = new HashMap<String,Object>();
     	try {
@@ -263,16 +240,13 @@ public class UserController {
     		logger.debug(e.getMessage());
     		responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
     	}
-    	String toJSONString = JSON.toJSONString(responseMap);
-    	toJSONString = SignUtil.sign(toJSONString);//签名
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(toJSONString);
-    	response.getWriter().flush();
-    	logger.info(request.getRequestURI()+" <== "+toJSONString);
+        SignUtil.sign(responseMap);//签名
+        logger.info(request.getRequestURI()+" <== "+JSON.toJSONString(responseMap));
+        return responseMap;
     }
     
     @RequestMapping("/mem/ns_identified_info_qry")
-    public void nsIdentifiedInfoQry(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public Map<String,Object> nsIdentifiedInfoQry(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
     	logger.info(request.getRequestURI()+" ==> "+JSON.toJSONString(jsonObj));
     	Map<String,Object> responseMap = new HashMap<String,Object>();
     	try {
@@ -289,12 +263,9 @@ public class UserController {
     		logger.debug(e.getMessage());
     		responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
     	}
-    	String toJSONString = JSON.toJSONString(responseMap);
-    	toJSONString = SignUtil.sign(toJSONString);//签名
-    	response.setCharacterEncoding("UTF-8");
-    	response.getWriter().write(toJSONString);
-    	response.getWriter().flush();
-    	logger.info(request.getRequestURI()+" <== "+toJSONString);
+        SignUtil.sign(responseMap);//签名
+        logger.info(request.getRequestURI()+" <== "+JSON.toJSONString(responseMap));
+        return responseMap;
     }
 
 }
