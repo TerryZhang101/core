@@ -40,7 +40,7 @@
     <bean id="sqlSessionFactory_uat" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource_uat" />
         <property name="configLocation" value="classpath:mybatis-config.xml"></property>
-        <property name="mapperLocations" value="classpath:com/nms/core/dao/*.xml"/>
+        <property name="mapperLocations" value="classpath*:com/nms/core/dao/**/*Mapper.xml"/>
     </bean>
 
     <bean id="sqlSessionTemplate_uat" class="org.mybatis.spring.SqlSessionTemplate">

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nms.core.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.nms.core.entity.Order" >
+    <constructor >
+      <idArg column="order_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cust_no" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="biz_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pay_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="organ_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_date" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="order_time" jdbcType="TIME" javaType="java.util.Date" />
+      <arg column="trans_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="order_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="refund_times" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="refund_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="pay_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_no, cust_no, biz_type, pay_type, organ_id, order_date, order_time, trans_amt, 
+    order_state, refund_times, refund_amt, pay_id, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_order_flow
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from c_order_flow
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nms.core.entity.Order" >
+    insert into c_order_flow (order_no, cust_no, biz_type, 
+      pay_type, organ_id, order_date, 
+      order_time, trans_amt, order_state, 
+      refund_times, refund_amt, pay_id, 
+      remark)
+    values (#{orderNo,jdbcType=VARCHAR}, #{custNo,jdbcType=INTEGER}, #{bizType,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=VARCHAR}, #{organId,jdbcType=VARCHAR}, #{orderDate,jdbcType=DATE}, 
+      #{orderTime,jdbcType=TIME}, #{transAmt,jdbcType=DECIMAL}, #{orderState,jdbcType=INTEGER}, 
+      #{refundTimes,jdbcType=INTEGER}, #{refundAmt,jdbcType=DECIMAL}, #{payId,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nms.core.entity.Order" >
+    insert into c_order_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="custNo != null" >
+        cust_no,
+      </if>
+      <if test="bizType != null" >
+        biz_type,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+      <if test="orderDate != null" >
+        order_date,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="transAmt != null" >
+        trans_amt,
+      </if>
+      <if test="orderState != null" >
+        order_state,
+      </if>
+      <if test="refundTimes != null" >
+        refund_times,
+      </if>
+      <if test="refundAmt != null" >
+        refund_amt,
+      </if>
+      <if test="payId != null" >
+        pay_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custNo != null" >
+        #{custNo,jdbcType=INTEGER},
+      </if>
+      <if test="bizType != null" >
+        #{bizType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIME},
+      </if>
+      <if test="transAmt != null" >
+        #{transAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="refundTimes != null" >
+        #{refundTimes,jdbcType=INTEGER},
+      </if>
+      <if test="refundAmt != null" >
+        #{refundAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payId != null" >
+        #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nms.core.entity.Order" >
+    update c_order_flow
+    <set >
+      <if test="custNo != null" >
+        cust_no = #{custNo,jdbcType=INTEGER},
+      </if>
+      <if test="bizType != null" >
+        biz_type = #{bizType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null" >
+        order_date = #{orderDate,jdbcType=DATE},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIME},
+      </if>
+      <if test="transAmt != null" >
+        trans_amt = #{transAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="orderState != null" >
+        order_state = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="refundTimes != null" >
+        refund_times = #{refundTimes,jdbcType=INTEGER},
+      </if>
+      <if test="refundAmt != null" >
+        refund_amt = #{refundAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payId != null" >
+        pay_id = #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nms.core.entity.Order" >
+    update c_order_flow
+    set cust_no = #{custNo,jdbcType=INTEGER},
+      biz_type = #{bizType,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      organ_id = #{organId,jdbcType=VARCHAR},
+      order_date = #{orderDate,jdbcType=DATE},
+      order_time = #{orderTime,jdbcType=TIME},
+      trans_amt = #{transAmt,jdbcType=DECIMAL},
+      order_state = #{orderState,jdbcType=INTEGER},
+      refund_times = #{refundTimes,jdbcType=INTEGER},
+      refund_amt = #{refundAmt,jdbcType=DECIMAL},
+      pay_id = #{payId,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where order_no = #{orderNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

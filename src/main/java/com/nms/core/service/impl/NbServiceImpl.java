@@ -1,8 +1,9 @@
 package com.nms.core.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.nms.core.dao.NbMapper;
+import com.nms.core.dao.OrderMapper;
 import com.nms.core.dao.UserMapper;
+import com.nms.core.entity.Order;
 import com.nms.core.entity.User;
 import com.nms.core.enums.ErrorCodeEnum;
 import com.nms.core.exception.CoreException;
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -27,7 +30,7 @@ public class NbServiceImpl implements NbService {
     private static final Logger logger = LoggerFactory.getLogger(NbServiceImpl.class);
 
     @Autowired
-    NbMapper nbMapper;
+    OrderMapper orderMapper;
 
     @Autowired
     UserMapper userMapper;
@@ -41,23 +44,32 @@ public class NbServiceImpl implements NbService {
     @Override
     @Transactional
     public void create_nb_order_prepay(JSONObject jsonObject, Map<String, Object> responseMap) {
-        final Map requestMap = jsonObject.toJavaObject(Map.class);
 
-        String out_trade_no = (String)requestMap.get("out_trade_no");
-        String cust_no = (String)requestMap.get("cust_no");
-        String organ_id = (String)requestMap.get("organ_id");
-        String prepay_id = StrKit.generateFlowNo(organ_id);
-        requestMap.put("prepay_id",prepay_id);
+        Order order = jsonObject.toJavaObject(Order.class);
 
-        logger.debug("==> prepay_id = " + prepay_id);
-        User user = userMapper.selectByPrimaryKey(Integer.valueOf(cust_no));
+        //用户信息校验
+        User user = userMapper.selectByPrimaryKey(Integer.valueOf(order.getCustNo()));
         if (null == user) {
             throw new CoreException(ErrorCodeEnum.USERNOTEXITS);
         }
 
-        nbMapper.insertOrder(requestMap);
-        responseMap.put("prepay_id",prepay_id);
-        //TODO 诺宝充值生成支付订单
+        final String organ_id = jsonObject.getString("organ_id");
+        final String pay_amount = jsonObject.getString("pay_amount");
+        //生成预支付订单号
+        String orderNo = StrKit.generateFlowNo(organ_id);
+        logger.debug("==> prepay_id = " + orderNo);
+        order.setOrderNo(orderNo);
+        order.setOrderDate(new Date());
+        order.setOrderTime(new Date());
+        order.setTransAmt(new BigDecimal(pay_amount));
+        //待支付
+        order.setOrderState(Integer.valueOf(2));
+        order.setRemark("诺宝充值");
+
+        //保存订单数据
+        orderMapper.insertSelective(order);
+
+        responseMap.put("prepay_id",orderNo);
 
     }
 
