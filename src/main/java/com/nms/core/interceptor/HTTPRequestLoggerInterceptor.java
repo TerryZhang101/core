@@ -3,6 +3,7 @@ package com.nms.core.interceptor;
 import com.nms.core.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.core.NamedThreadLocal;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -31,6 +32,8 @@ public class HTTPRequestLoggerInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //设置traceId
+        MDC.put("traceId", String.valueOf((new Date()).getTime()));
         Long beginTime = System.currentTimeMillis();//1、开始时间
         startTimeThreadLocal.set(beginTime);		//线程绑定变量（该数据只有当前请求的线程可见）
         logger.debug("开始计时: {}  URI: {}", new SimpleDateFormat("hh:mm:ss.SSS")

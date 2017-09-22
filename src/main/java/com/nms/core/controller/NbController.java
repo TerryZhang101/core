@@ -38,7 +38,7 @@ public class NbController {
     @ResponseBody
     @RequestMapping(value = "/create_nb_order_prepay")
     public Map create_nb_order_prepay(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        logger.info(request.getRequestURI() + " ==> \n" + JSON.toJSONString(jsonObj, SerializerFeature.PrettyFormat));
+        logger.info(request.getRequestURI() + " ==> " + JSON.toJSONString(jsonObj));
 
         Map<String,Object> responseMap = new HashMap<String,Object>();
         String[] mustFields = {"cust_no","pay_amount","out_trade_no","pay_type","biz_type","organ_id","channel"};
@@ -59,8 +59,8 @@ public class NbController {
             responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
         }
 
-        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.PrettyFormat,SerializerFeature.MapSortField);
-        logger.info(request.getRequestURI() + " <== \n" + responseJson);
+        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.MapSortField);
+        logger.info(request.getRequestURI() + " <== " + responseJson);
 
         return responseMap;
 
@@ -69,7 +69,7 @@ public class NbController {
     @ResponseBody
     @RequestMapping(value = "/notify_nb_order_payed_result")
     public Map notify_nb_order_payed_result(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception{
-        logger.info(request.getRequestURI() + " ==> \n" + JSON.toJSONString(jsonObj, SerializerFeature.PrettyFormat));
+        logger.info(request.getRequestURI() + " ==> " + JSON.toJSONString(jsonObj));
 
         Map<String,Object> responseMap = new HashMap<String,Object>();
         String[] mustFields = {"cust_no","pay_amount","pay_type","prepay_id","pay_id","pay_result","biz_type","organ_id","channel"};
@@ -90,8 +90,8 @@ public class NbController {
             responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
         }
 
-        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.PrettyFormat,SerializerFeature.MapSortField);
-        logger.info(request.getRequestURI() + " <== \n" + responseJson);
+        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.MapSortField);
+        logger.info(request.getRequestURI() + " <== " + responseJson);
 
         return responseMap;
 
@@ -100,7 +100,7 @@ public class NbController {
     @ResponseBody
     @RequestMapping(value = "/nb_withdraw_apply")
     public Map nb_withdraw_apply(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception{
-        logger.info(request.getRequestURI()+ " ==> \n" + JSON.toJSONString(jsonObj, SerializerFeature.PrettyFormat));
+        logger.info(request.getRequestURI() + " ==> " + JSON.toJSONString(jsonObj));
 
         Map<String,Object> responseMap = new HashMap<String,Object>();
         String[] mustFields = {"cust_no","biz_type","pay_type","withdraw_amount","card_no","tran_pwd","organ_id","channel"};
@@ -121,8 +121,8 @@ public class NbController {
             responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
         }
 
-        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.PrettyFormat,SerializerFeature.MapSortField);
-        logger.info(request.getRequestURI() + " <== \n" + responseJson);
+        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.MapSortField);
+        logger.info(request.getRequestURI() + " <== " + responseJson);
 
         return responseMap;
 
@@ -131,7 +131,7 @@ public class NbController {
     @ResponseBody
     @RequestMapping(value = "/nb_withdraw_feerate_qry")
     public Map nb_withdraw_feerate_qry(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception{
-        logger.info(request.getRequestURI() + " ==> \n" + JSON.toJSONString(jsonObj, SerializerFeature.PrettyFormat));
+        logger.info(request.getRequestURI() + " ==> " + JSON.toJSONString(jsonObj));
 
         Map<String,Object> responseMap = new HashMap<String,Object>();
         String[] mustFields = {"cust_no","biz_type","organ_id","channel"};
@@ -152,8 +152,8 @@ public class NbController {
             responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
         }
 
-        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.PrettyFormat,SerializerFeature.MapSortField);
-        logger.info(request.getRequestURI() + " <== \n" + responseJson);
+        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.MapSortField);
+        logger.info(request.getRequestURI() + " <== " + responseJson);
 
         return responseMap;
 
@@ -162,7 +162,7 @@ public class NbController {
     @ResponseBody
     @RequestMapping(value = "/nb_withdraw_card_qry")
     public Map nb_withdraw_card_qry(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception{
-        logger.info(request.getRequestURI() + " ==> \n" + JSON.toJSONString(jsonObj, SerializerFeature.PrettyFormat));
+        logger.info(request.getRequestURI() + " ==> " + JSON.toJSONString(jsonObj));
 
         Map<String,Object> responseMap = new HashMap<String,Object>();
         String[] mustFields = {"cust_no","organ_id","channel"};
@@ -183,8 +183,8 @@ public class NbController {
             responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
         }
 
-        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.PrettyFormat,SerializerFeature.MapSortField);
-        logger.info(request.getRequestURI() + " <== \n" + responseJson);
+        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.MapSortField);
+        logger.info(request.getRequestURI() + " <== " + responseJson);
 
         return responseMap;
 
@@ -193,7 +193,7 @@ public class NbController {
     @ResponseBody
     @RequestMapping(value = "/nb_partner_qry")
     public Map nb_partner_qry(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception{
-        logger.info(request.getRequestURI() + " ==> \n" + JSON.toJSONString(jsonObj, SerializerFeature.PrettyFormat));
+        logger.info(request.getRequestURI() + " ==> " + JSON.toJSONString(jsonObj));
 
         Map<String,Object> responseMap = new HashMap<String,Object>();
         String[] mustFields = {"cust_no","biz_type","organ_id","channel"};
@@ -214,8 +214,8 @@ public class NbController {
             responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
         }
 
-        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.PrettyFormat,SerializerFeature.MapSortField);
-        logger.info(request.getRequestURI() + " <== \n" + responseJson);
+        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.MapSortField);
+        logger.info(request.getRequestURI() + " <== " + responseJson);
 
         return responseMap;
 
@@ -224,7 +224,7 @@ public class NbController {
     @ResponseBody
     @RequestMapping(value = "/nb_transfer")
     public Map nb_transfer(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception{
-        logger.info(request.getRequestURI() + " ==> \n" + JSON.toJSONString(jsonObj, SerializerFeature.PrettyFormat));
+        logger.info(request.getRequestURI() + " ==> " + JSON.toJSONString(jsonObj));
 
         Map<String,Object> responseMap = new HashMap<String,Object>();
         String[] mustFields = {"cust_no","biz_type","tran_amount","recv_acc_no","recv_cust_name","tran_pwd","tran_date","organ_id","channel"};
@@ -245,8 +245,8 @@ public class NbController {
             responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
         }
 
-        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.PrettyFormat,SerializerFeature.MapSortField);
-        logger.info(request.getRequestURI() + " <== \n" + responseJson);
+        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.MapSortField);
+        logger.info(request.getRequestURI() + " <== " + responseJson);
 
         return responseMap;
 
@@ -256,7 +256,7 @@ public class NbController {
     @RequestMapping(value = "/nb_detail_qry")
     public Map nb_detail_qry(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) throws Exception{
 
-        logger.info(request.getRequestURI() + " ==> \n" + JSON.toJSONString(jsonObj, SerializerFeature.PrettyFormat));
+        logger.info(request.getRequestURI() + " ==> " + JSON.toJSONString(jsonObj));
 
         Map<String,Object> responseMap = new HashMap<String,Object>();
         String[] mustFields = {"cust_no","biz_type","begin_date","end_date","per_page_show","begin_pos","organ_id","channel"};
@@ -277,8 +277,8 @@ public class NbController {
             responseMap = ResponseFormatUtil.formatResponseError(ErrorCodeEnum.INTERERROR);
         }
 
-        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.PrettyFormat,SerializerFeature.MapSortField);
-        logger.info(request.getRequestURI() + " <== \n" + responseJson);
+        String responseJson = JSON.toJSONString(responseMap, SerializerFeature.MapSortField);
+        logger.info(request.getRequestURI() + " <== " + responseJson);
 
         return responseMap;
 
