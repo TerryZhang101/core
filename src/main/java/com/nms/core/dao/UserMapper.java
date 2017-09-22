@@ -1,9 +1,10 @@
 package com.nms.core.dao;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.nms.core.entity.User;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository(value = "userMapper")
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 

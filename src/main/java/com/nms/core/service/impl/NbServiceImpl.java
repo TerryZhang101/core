@@ -2,6 +2,10 @@ package com.nms.core.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.nms.core.dao.NbMapper;
+import com.nms.core.dao.UserMapper;
+import com.nms.core.entity.User;
+import com.nms.core.enums.ErrorCodeEnum;
+import com.nms.core.exception.CoreException;
 import com.nms.core.service.NbService;
 import com.nms.core.util.kit.StrKit;
 import org.slf4j.Logger;
@@ -22,10 +26,11 @@ public class NbServiceImpl implements NbService {
 
     private static final Logger logger = LoggerFactory.getLogger(NbServiceImpl.class);
 
-
-
     @Autowired
     NbMapper nbMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     /**
      * 诺宝充值生成支付订单
@@ -39,11 +44,16 @@ public class NbServiceImpl implements NbService {
         final Map requestMap = jsonObject.toJavaObject(Map.class);
 
         String out_trade_no = (String)requestMap.get("out_trade_no");
+        String cust_no = (String)requestMap.get("cust_no");
         String organ_id = (String)requestMap.get("organ_id");
         String prepay_id = StrKit.generateFlowNo(organ_id);
         requestMap.put("prepay_id",prepay_id);
 
-        logger.debug("prepay_id="+prepay_id);
+        logger.debug("==> prepay_id = " + prepay_id);
+        User user = userMapper.selectByPrimaryKey(Integer.valueOf(cust_no));
+        if (null == user) {
+            throw new CoreException(ErrorCodeEnum.USERNOTEXITS);
+        }
 
         nbMapper.insertOrder(requestMap);
         responseMap.put("prepay_id",prepay_id);
