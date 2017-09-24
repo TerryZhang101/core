@@ -11,6 +11,8 @@ public class Account extends AccountKey implements Serializable {
 
     private String open_bran_code;
 
+    private String acct_bran_code;
+
     private Date open_date;
 
     private Date cancel_date;
@@ -38,6 +40,8 @@ public class Account extends AccountKey implements Serializable {
     private BigDecimal then_bal;
 
     private Integer bal_direct;
+
+    private BigDecimal acct_accum;
 
     private Integer trans_count;
 
@@ -77,6 +81,14 @@ public class Account extends AccountKey implements Serializable {
 
     public void setOpen_bran_code(String open_bran_code) {
         this.open_bran_code = open_bran_code == null ? null : open_bran_code.trim();
+    }
+
+    public String getAcct_bran_code() {
+        return acct_bran_code;
+    }
+
+    public void setAcct_bran_code(String acct_bran_code) {
+        this.acct_bran_code = acct_bran_code == null ? null : acct_bran_code.trim();
     }
 
     public Date getOpen_date() {
@@ -191,6 +203,14 @@ public class Account extends AccountKey implements Serializable {
         this.bal_direct = bal_direct;
     }
 
+    public BigDecimal getAcct_accum() {
+        return acct_accum;
+    }
+
+    public void setAcct_accum(BigDecimal acct_accum) {
+        this.acct_accum = acct_accum;
+    }
+
     public Integer getTrans_count() {
         return trans_count;
     }
@@ -264,6 +284,7 @@ public class Account extends AccountKey implements Serializable {
             && (this.getCust_no() == null ? other.getCust_no() == null : this.getCust_no().equals(other.getCust_no()))
             && (this.getCust_name() == null ? other.getCust_name() == null : this.getCust_name().equals(other.getCust_name()))
             && (this.getOpen_bran_code() == null ? other.getOpen_bran_code() == null : this.getOpen_bran_code().equals(other.getOpen_bran_code()))
+            && (this.getAcct_bran_code() == null ? other.getAcct_bran_code() == null : this.getAcct_bran_code().equals(other.getAcct_bran_code()))
             && (this.getOpen_date() == null ? other.getOpen_date() == null : this.getOpen_date().equals(other.getOpen_date()))
             && (this.getCancel_date() == null ? other.getCancel_date() == null : this.getCancel_date().equals(other.getCancel_date()))
             && (this.getLast_trans_date() == null ? other.getLast_trans_date() == null : this.getLast_trans_date().equals(other.getLast_trans_date()))
@@ -278,6 +299,7 @@ public class Account extends AccountKey implements Serializable {
             && (this.getAcct_pre_bal() == null ? other.getAcct_pre_bal() == null : this.getAcct_pre_bal().equals(other.getAcct_pre_bal()))
             && (this.getThen_bal() == null ? other.getThen_bal() == null : this.getThen_bal().equals(other.getThen_bal()))
             && (this.getBal_direct() == null ? other.getBal_direct() == null : this.getBal_direct().equals(other.getBal_direct()))
+            && (this.getAcct_accum() == null ? other.getAcct_accum() == null : this.getAcct_accum().equals(other.getAcct_accum()))
             && (this.getTrans_count() == null ? other.getTrans_count() == null : this.getTrans_count().equals(other.getTrans_count()))
             && (this.getDac() == null ? other.getDac() == null : this.getDac().equals(other.getDac()))
             && (this.getCtrl_flag() == null ? other.getCtrl_flag() == null : this.getCtrl_flag().equals(other.getCtrl_flag()))
@@ -296,6 +318,7 @@ public class Account extends AccountKey implements Serializable {
         result = prime * result + ((getCust_no() == null) ? 0 : getCust_no().hashCode());
         result = prime * result + ((getCust_name() == null) ? 0 : getCust_name().hashCode());
         result = prime * result + ((getOpen_bran_code() == null) ? 0 : getOpen_bran_code().hashCode());
+        result = prime * result + ((getAcct_bran_code() == null) ? 0 : getAcct_bran_code().hashCode());
         result = prime * result + ((getOpen_date() == null) ? 0 : getOpen_date().hashCode());
         result = prime * result + ((getCancel_date() == null) ? 0 : getCancel_date().hashCode());
         result = prime * result + ((getLast_trans_date() == null) ? 0 : getLast_trans_date().hashCode());
@@ -310,6 +333,7 @@ public class Account extends AccountKey implements Serializable {
         result = prime * result + ((getAcct_pre_bal() == null) ? 0 : getAcct_pre_bal().hashCode());
         result = prime * result + ((getThen_bal() == null) ? 0 : getThen_bal().hashCode());
         result = prime * result + ((getBal_direct() == null) ? 0 : getBal_direct().hashCode());
+        result = prime * result + ((getAcct_accum() == null) ? 0 : getAcct_accum().hashCode());
         result = prime * result + ((getTrans_count() == null) ? 0 : getTrans_count().hashCode());
         result = prime * result + ((getDac() == null) ? 0 : getDac().hashCode());
         result = prime * result + ((getCtrl_flag() == null) ? 0 : getCtrl_flag().hashCode());

@@ -1,319 +1,342 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.nms.core.dao.AccountMapper" >
-  <resultMap id="BaseResultMap" type="com.nms.core.entity.Account" >
-    <id column="acct_no" property="acct_no" jdbcType="VARCHAR" />
-    <id column="acct_seqno" property="acct_seqno" jdbcType="VARCHAR" />
-    <result column="cust_no" property="cust_no" jdbcType="VARCHAR" />
-    <result column="cust_name" property="cust_name" jdbcType="VARCHAR" />
-    <result column="open_bran_code" property="open_bran_code" jdbcType="VARCHAR" />
-    <result column="open_date" property="open_date" jdbcType="TIMESTAMP" />
-    <result column="cancel_date" property="cancel_date" jdbcType="TIMESTAMP" />
-    <result column="last_trans_date" property="last_trans_date" jdbcType="TIMESTAMP" />
-    <result column="last_acct_date" property="last_acct_date" jdbcType="TIMESTAMP" />
-    <result column="stop_payment_type" property="stop_payment_type" jdbcType="INTEGER" />
-    <result column="acct_type" property="acct_type" jdbcType="VARCHAR" />
-    <result column="acct_status" property="acct_status" jdbcType="INTEGER" />
-    <result column="cur_code" property="cur_code" jdbcType="INTEGER" />
-    <result column="balance_mode" property="balance_mode" jdbcType="INTEGER" />
-    <result column="sub_code" property="sub_code" jdbcType="VARCHAR" />
-    <result column="acct_bal" property="acct_bal" jdbcType="DECIMAL" />
-    <result column="acct_pre_bal" property="acct_pre_bal" jdbcType="DECIMAL" />
-    <result column="then_bal" property="then_bal" jdbcType="DECIMAL" />
-    <result column="bal_direct" property="bal_direct" jdbcType="INTEGER" />
-    <result column="trans_count" property="trans_count" jdbcType="INTEGER" />
-    <result column="dac" property="dac" jdbcType="VARCHAR" />
-    <result column="ctrl_flag" property="ctrl_flag" jdbcType="VARCHAR" />
-    <result column="reserv_num1" property="reserv_num1" jdbcType="DECIMAL" />
-    <result column="reserv_num2" property="reserv_num2" jdbcType="INTEGER" />
-    <result column="reserv_str1" property="reserv_str1" jdbcType="VARCHAR" />
-    <result column="reserv_str2" property="reserv_str2" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nms.core.dao.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.nms.core.entity.Account">
+    <id column="acct_no" jdbcType="VARCHAR" property="acct_no" />
+    <id column="acct_seqno" jdbcType="VARCHAR" property="acct_seqno" />
+    <result column="cust_no" jdbcType="VARCHAR" property="cust_no" />
+    <result column="cust_name" jdbcType="VARCHAR" property="cust_name" />
+    <result column="open_bran_code" jdbcType="VARCHAR" property="open_bran_code" />
+    <result column="acct_bran_code" jdbcType="VARCHAR" property="acct_bran_code" />
+    <result column="open_date" jdbcType="TIMESTAMP" property="open_date" />
+    <result column="cancel_date" jdbcType="TIMESTAMP" property="cancel_date" />
+    <result column="last_trans_date" jdbcType="TIMESTAMP" property="last_trans_date" />
+    <result column="last_acct_date" jdbcType="TIMESTAMP" property="last_acct_date" />
+    <result column="stop_payment_type" jdbcType="INTEGER" property="stop_payment_type" />
+    <result column="acct_type" jdbcType="VARCHAR" property="acct_type" />
+    <result column="acct_status" jdbcType="INTEGER" property="acct_status" />
+    <result column="cur_code" jdbcType="INTEGER" property="cur_code" />
+    <result column="balance_mode" jdbcType="INTEGER" property="balance_mode" />
+    <result column="sub_code" jdbcType="VARCHAR" property="sub_code" />
+    <result column="acct_bal" jdbcType="DECIMAL" property="acct_bal" />
+    <result column="acct_pre_bal" jdbcType="DECIMAL" property="acct_pre_bal" />
+    <result column="then_bal" jdbcType="DECIMAL" property="then_bal" />
+    <result column="bal_direct" jdbcType="INTEGER" property="bal_direct" />
+    <result column="acct_accum" jdbcType="DECIMAL" property="acct_accum" />
+    <result column="trans_count" jdbcType="INTEGER" property="trans_count" />
+    <result column="dac" jdbcType="VARCHAR" property="dac" />
+    <result column="ctrl_flag" jdbcType="VARCHAR" property="ctrl_flag" />
+    <result column="reserv_num1" jdbcType="DECIMAL" property="reserv_num1" />
+    <result column="reserv_num2" jdbcType="INTEGER" property="reserv_num2" />
+    <result column="reserv_str1" jdbcType="VARCHAR" property="reserv_str1" />
+    <result column="reserv_str2" jdbcType="VARCHAR" property="reserv_str2" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    acct_no, acct_seqno, cust_no, cust_name, open_bran_code, open_date, cancel_date, 
-    last_trans_date, last_acct_date, stop_payment_type, acct_type, acct_status, cur_code, 
-    balance_mode, sub_code, acct_bal, acct_pre_bal, then_bal, bal_direct, trans_count, 
-    dac, ctrl_flag, reserv_num1, reserv_num2, reserv_str1, reserv_str2
+  <sql id="Base_Column_List">
+    acct_no, acct_seqno, cust_no, cust_name, open_bran_code, acct_bran_code, open_date, 
+    cancel_date, last_trans_date, last_acct_date, stop_payment_type, acct_type, acct_status, 
+    cur_code, balance_mode, sub_code, acct_bal, acct_pre_bal, then_bal, bal_direct, acct_accum, 
+    trans_count, dac, ctrl_flag, reserv_num1, reserv_num2, reserv_str1, reserv_str2
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.nms.core.entity.AccountKey" >
+  <select id="selectByPrimaryKey" parameterType="com.nms.core.entity.AccountKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from c_acct_info
     where acct_no = #{acct_no,jdbcType=VARCHAR}
       and acct_seqno = #{acct_seqno,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.nms.core.entity.AccountKey" >
+  <delete id="deleteByPrimaryKey" parameterType="com.nms.core.entity.AccountKey">
     delete from c_acct_info
     where acct_no = #{acct_no,jdbcType=VARCHAR}
       and acct_seqno = #{acct_seqno,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.nms.core.entity.Account" >
+  <insert id="insert" parameterType="com.nms.core.entity.Account">
     insert into c_acct_info (acct_no, acct_seqno, cust_no, 
-      cust_name, open_bran_code, open_date, 
-      cancel_date, last_trans_date, last_acct_date, 
-      stop_payment_type, acct_type, acct_status, 
-      cur_code, balance_mode, sub_code, 
-      acct_bal, acct_pre_bal, then_bal, 
-      bal_direct, trans_count, dac, 
-      ctrl_flag, reserv_num1, reserv_num2, 
-      reserv_str1, reserv_str2)
+      cust_name, open_bran_code, acct_bran_code, 
+      open_date, cancel_date, last_trans_date, 
+      last_acct_date, stop_payment_type, acct_type, 
+      acct_status, cur_code, balance_mode, 
+      sub_code, acct_bal, acct_pre_bal, 
+      then_bal, bal_direct, acct_accum, 
+      trans_count, dac, ctrl_flag, 
+      reserv_num1, reserv_num2, reserv_str1, 
+      reserv_str2)
     values (#{acct_no,jdbcType=VARCHAR}, #{acct_seqno,jdbcType=VARCHAR}, #{cust_no,jdbcType=VARCHAR}, 
-      #{cust_name,jdbcType=VARCHAR}, #{open_bran_code,jdbcType=VARCHAR}, #{open_date,jdbcType=TIMESTAMP}, 
-      #{cancel_date,jdbcType=TIMESTAMP}, #{last_trans_date,jdbcType=TIMESTAMP}, #{last_acct_date,jdbcType=TIMESTAMP}, 
-      #{stop_payment_type,jdbcType=INTEGER}, #{acct_type,jdbcType=VARCHAR}, #{acct_status,jdbcType=INTEGER}, 
-      #{cur_code,jdbcType=INTEGER}, #{balance_mode,jdbcType=INTEGER}, #{sub_code,jdbcType=VARCHAR}, 
-      #{acct_bal,jdbcType=DECIMAL}, #{acct_pre_bal,jdbcType=DECIMAL}, #{then_bal,jdbcType=DECIMAL}, 
-      #{bal_direct,jdbcType=INTEGER}, #{trans_count,jdbcType=INTEGER}, #{dac,jdbcType=VARCHAR}, 
-      #{ctrl_flag,jdbcType=VARCHAR}, #{reserv_num1,jdbcType=DECIMAL}, #{reserv_num2,jdbcType=INTEGER}, 
-      #{reserv_str1,jdbcType=VARCHAR}, #{reserv_str2,jdbcType=VARCHAR})
+      #{cust_name,jdbcType=VARCHAR}, #{open_bran_code,jdbcType=VARCHAR}, #{acct_bran_code,jdbcType=VARCHAR}, 
+      #{open_date,jdbcType=TIMESTAMP}, #{cancel_date,jdbcType=TIMESTAMP}, #{last_trans_date,jdbcType=TIMESTAMP}, 
+      #{last_acct_date,jdbcType=TIMESTAMP}, #{stop_payment_type,jdbcType=INTEGER}, #{acct_type,jdbcType=VARCHAR}, 
+      #{acct_status,jdbcType=INTEGER}, #{cur_code,jdbcType=INTEGER}, #{balance_mode,jdbcType=INTEGER}, 
+      #{sub_code,jdbcType=VARCHAR}, #{acct_bal,jdbcType=DECIMAL}, #{acct_pre_bal,jdbcType=DECIMAL}, 
+      #{then_bal,jdbcType=DECIMAL}, #{bal_direct,jdbcType=INTEGER}, #{acct_accum,jdbcType=DECIMAL}, 
+      #{trans_count,jdbcType=INTEGER}, #{dac,jdbcType=VARCHAR}, #{ctrl_flag,jdbcType=VARCHAR}, 
+      #{reserv_num1,jdbcType=DECIMAL}, #{reserv_num2,jdbcType=INTEGER}, #{reserv_str1,jdbcType=VARCHAR}, 
+      #{reserv_str2,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.nms.core.entity.Account" >
+  <insert id="insertSelective" parameterType="com.nms.core.entity.Account">
     insert into c_acct_info
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="acct_no != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="acct_no != null">
         acct_no,
       </if>
-      <if test="acct_seqno != null" >
+      <if test="acct_seqno != null">
         acct_seqno,
       </if>
-      <if test="cust_no != null" >
+      <if test="cust_no != null">
         cust_no,
       </if>
-      <if test="cust_name != null" >
+      <if test="cust_name != null">
         cust_name,
       </if>
-      <if test="open_bran_code != null" >
+      <if test="open_bran_code != null">
         open_bran_code,
       </if>
-      <if test="open_date != null" >
+      <if test="acct_bran_code != null">
+        acct_bran_code,
+      </if>
+      <if test="open_date != null">
         open_date,
       </if>
-      <if test="cancel_date != null" >
+      <if test="cancel_date != null">
         cancel_date,
       </if>
-      <if test="last_trans_date != null" >
+      <if test="last_trans_date != null">
         last_trans_date,
       </if>
-      <if test="last_acct_date != null" >
+      <if test="last_acct_date != null">
         last_acct_date,
       </if>
-      <if test="stop_payment_type != null" >
+      <if test="stop_payment_type != null">
         stop_payment_type,
       </if>
-      <if test="acct_type != null" >
+      <if test="acct_type != null">
         acct_type,
       </if>
-      <if test="acct_status != null" >
+      <if test="acct_status != null">
         acct_status,
       </if>
-      <if test="cur_code != null" >
+      <if test="cur_code != null">
         cur_code,
       </if>
-      <if test="balance_mode != null" >
+      <if test="balance_mode != null">
         balance_mode,
       </if>
-      <if test="sub_code != null" >
+      <if test="sub_code != null">
         sub_code,
       </if>
-      <if test="acct_bal != null" >
+      <if test="acct_bal != null">
         acct_bal,
       </if>
-      <if test="acct_pre_bal != null" >
+      <if test="acct_pre_bal != null">
         acct_pre_bal,
       </if>
-      <if test="then_bal != null" >
+      <if test="then_bal != null">
         then_bal,
       </if>
-      <if test="bal_direct != null" >
+      <if test="bal_direct != null">
         bal_direct,
       </if>
-      <if test="trans_count != null" >
+      <if test="acct_accum != null">
+        acct_accum,
+      </if>
+      <if test="trans_count != null">
         trans_count,
       </if>
-      <if test="dac != null" >
+      <if test="dac != null">
         dac,
       </if>
-      <if test="ctrl_flag != null" >
+      <if test="ctrl_flag != null">
         ctrl_flag,
       </if>
-      <if test="reserv_num1 != null" >
+      <if test="reserv_num1 != null">
         reserv_num1,
       </if>
-      <if test="reserv_num2 != null" >
+      <if test="reserv_num2 != null">
         reserv_num2,
       </if>
-      <if test="reserv_str1 != null" >
+      <if test="reserv_str1 != null">
         reserv_str1,
       </if>
-      <if test="reserv_str2 != null" >
+      <if test="reserv_str2 != null">
         reserv_str2,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="acct_no != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="acct_no != null">
         #{acct_no,jdbcType=VARCHAR},
       </if>
-      <if test="acct_seqno != null" >
+      <if test="acct_seqno != null">
         #{acct_seqno,jdbcType=VARCHAR},
       </if>
-      <if test="cust_no != null" >
+      <if test="cust_no != null">
         #{cust_no,jdbcType=VARCHAR},
       </if>
-      <if test="cust_name != null" >
+      <if test="cust_name != null">
         #{cust_name,jdbcType=VARCHAR},
       </if>
-      <if test="open_bran_code != null" >
+      <if test="open_bran_code != null">
         #{open_bran_code,jdbcType=VARCHAR},
       </if>
-      <if test="open_date != null" >
+      <if test="acct_bran_code != null">
+        #{acct_bran_code,jdbcType=VARCHAR},
+      </if>
+      <if test="open_date != null">
         #{open_date,jdbcType=TIMESTAMP},
       </if>
-      <if test="cancel_date != null" >
+      <if test="cancel_date != null">
         #{cancel_date,jdbcType=TIMESTAMP},
       </if>
-      <if test="last_trans_date != null" >
+      <if test="last_trans_date != null">
         #{last_trans_date,jdbcType=TIMESTAMP},
       </if>
-      <if test="last_acct_date != null" >
+      <if test="last_acct_date != null">
         #{last_acct_date,jdbcType=TIMESTAMP},
       </if>
-      <if test="stop_payment_type != null" >
+      <if test="stop_payment_type != null">
         #{stop_payment_type,jdbcType=INTEGER},
       </if>
-      <if test="acct_type != null" >
+      <if test="acct_type != null">
         #{acct_type,jdbcType=VARCHAR},
       </if>
-      <if test="acct_status != null" >
+      <if test="acct_status != null">
         #{acct_status,jdbcType=INTEGER},
       </if>
-      <if test="cur_code != null" >
+      <if test="cur_code != null">
         #{cur_code,jdbcType=INTEGER},
       </if>
-      <if test="balance_mode != null" >
+      <if test="balance_mode != null">
         #{balance_mode,jdbcType=INTEGER},
       </if>
-      <if test="sub_code != null" >
+      <if test="sub_code != null">
         #{sub_code,jdbcType=VARCHAR},
       </if>
-      <if test="acct_bal != null" >
+      <if test="acct_bal != null">
         #{acct_bal,jdbcType=DECIMAL},
       </if>
-      <if test="acct_pre_bal != null" >
+      <if test="acct_pre_bal != null">
         #{acct_pre_bal,jdbcType=DECIMAL},
       </if>
-      <if test="then_bal != null" >
+      <if test="then_bal != null">
         #{then_bal,jdbcType=DECIMAL},
       </if>
-      <if test="bal_direct != null" >
+      <if test="bal_direct != null">
         #{bal_direct,jdbcType=INTEGER},
       </if>
-      <if test="trans_count != null" >
+      <if test="acct_accum != null">
+        #{acct_accum,jdbcType=DECIMAL},
+      </if>
+      <if test="trans_count != null">
         #{trans_count,jdbcType=INTEGER},
       </if>
-      <if test="dac != null" >
+      <if test="dac != null">
         #{dac,jdbcType=VARCHAR},
       </if>
-      <if test="ctrl_flag != null" >
+      <if test="ctrl_flag != null">
         #{ctrl_flag,jdbcType=VARCHAR},
       </if>
-      <if test="reserv_num1 != null" >
+      <if test="reserv_num1 != null">
         #{reserv_num1,jdbcType=DECIMAL},
       </if>
-      <if test="reserv_num2 != null" >
+      <if test="reserv_num2 != null">
         #{reserv_num2,jdbcType=INTEGER},
       </if>
-      <if test="reserv_str1 != null" >
+      <if test="reserv_str1 != null">
         #{reserv_str1,jdbcType=VARCHAR},
       </if>
-      <if test="reserv_str2 != null" >
+      <if test="reserv_str2 != null">
         #{reserv_str2,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.nms.core.entity.Account" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nms.core.entity.Account">
     update c_acct_info
-    <set >
-      <if test="cust_no != null" >
+    <set>
+      <if test="cust_no != null">
         cust_no = #{cust_no,jdbcType=VARCHAR},
       </if>
-      <if test="cust_name != null" >
+      <if test="cust_name != null">
         cust_name = #{cust_name,jdbcType=VARCHAR},
       </if>
-      <if test="open_bran_code != null" >
+      <if test="open_bran_code != null">
         open_bran_code = #{open_bran_code,jdbcType=VARCHAR},
       </if>
-      <if test="open_date != null" >
+      <if test="acct_bran_code != null">
+        acct_bran_code = #{acct_bran_code,jdbcType=VARCHAR},
+      </if>
+      <if test="open_date != null">
         open_date = #{open_date,jdbcType=TIMESTAMP},
       </if>
-      <if test="cancel_date != null" >
+      <if test="cancel_date != null">
         cancel_date = #{cancel_date,jdbcType=TIMESTAMP},
       </if>
-      <if test="last_trans_date != null" >
+      <if test="last_trans_date != null">
         last_trans_date = #{last_trans_date,jdbcType=TIMESTAMP},
       </if>
-      <if test="last_acct_date != null" >
+      <if test="last_acct_date != null">
         last_acct_date = #{last_acct_date,jdbcType=TIMESTAMP},
       </if>
-      <if test="stop_payment_type != null" >
+      <if test="stop_payment_type != null">
         stop_payment_type = #{stop_payment_type,jdbcType=INTEGER},
       </if>
-      <if test="acct_type != null" >
+      <if test="acct_type != null">
         acct_type = #{acct_type,jdbcType=VARCHAR},
       </if>
-      <if test="acct_status != null" >
+      <if test="acct_status != null">
         acct_status = #{acct_status,jdbcType=INTEGER},
       </if>
-      <if test="cur_code != null" >
+      <if test="cur_code != null">
         cur_code = #{cur_code,jdbcType=INTEGER},
       </if>
-      <if test="balance_mode != null" >
+      <if test="balance_mode != null">
         balance_mode = #{balance_mode,jdbcType=INTEGER},
       </if>
-      <if test="sub_code != null" >
+      <if test="sub_code != null">
         sub_code = #{sub_code,jdbcType=VARCHAR},
       </if>
-      <if test="acct_bal != null" >
+      <if test="acct_bal != null">
         acct_bal = #{acct_bal,jdbcType=DECIMAL},
       </if>
-      <if test="acct_pre_bal != null" >
+      <if test="acct_pre_bal != null">
         acct_pre_bal = #{acct_pre_bal,jdbcType=DECIMAL},
       </if>
-      <if test="then_bal != null" >
+      <if test="then_bal != null">
         then_bal = #{then_bal,jdbcType=DECIMAL},
       </if>
-      <if test="bal_direct != null" >
+      <if test="bal_direct != null">
         bal_direct = #{bal_direct,jdbcType=INTEGER},
       </if>
-      <if test="trans_count != null" >
+      <if test="acct_accum != null">
+        acct_accum = #{acct_accum,jdbcType=DECIMAL},
+      </if>
+      <if test="trans_count != null">
         trans_count = #{trans_count,jdbcType=INTEGER},
       </if>
-      <if test="dac != null" >
+      <if test="dac != null">
         dac = #{dac,jdbcType=VARCHAR},
       </if>
-      <if test="ctrl_flag != null" >
+      <if test="ctrl_flag != null">
         ctrl_flag = #{ctrl_flag,jdbcType=VARCHAR},
       </if>
-      <if test="reserv_num1 != null" >
+      <if test="reserv_num1 != null">
         reserv_num1 = #{reserv_num1,jdbcType=DECIMAL},
       </if>
-      <if test="reserv_num2 != null" >
+      <if test="reserv_num2 != null">
         reserv_num2 = #{reserv_num2,jdbcType=INTEGER},
       </if>
-      <if test="reserv_str1 != null" >
+      <if test="reserv_str1 != null">
         reserv_str1 = #{reserv_str1,jdbcType=VARCHAR},
       </if>
-      <if test="reserv_str2 != null" >
+      <if test="reserv_str2 != null">
         reserv_str2 = #{reserv_str2,jdbcType=VARCHAR},
       </if>
     </set>
     where acct_no = #{acct_no,jdbcType=VARCHAR}
       and acct_seqno = #{acct_seqno,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.nms.core.entity.Account" >
+  <update id="updateByPrimaryKey" parameterType="com.nms.core.entity.Account">
     update c_acct_info
     set cust_no = #{cust_no,jdbcType=VARCHAR},
       cust_name = #{cust_name,jdbcType=VARCHAR},
       open_bran_code = #{open_bran_code,jdbcType=VARCHAR},
+      acct_bran_code = #{acct_bran_code,jdbcType=VARCHAR},
       open_date = #{open_date,jdbcType=TIMESTAMP},
       cancel_date = #{cancel_date,jdbcType=TIMESTAMP},
       last_trans_date = #{last_trans_date,jdbcType=TIMESTAMP},
@@ -328,6 +351,7 @@
       acct_pre_bal = #{acct_pre_bal,jdbcType=DECIMAL},
       then_bal = #{then_bal,jdbcType=DECIMAL},
       bal_direct = #{bal_direct,jdbcType=INTEGER},
+      acct_accum = #{acct_accum,jdbcType=DECIMAL},
       trans_count = #{trans_count,jdbcType=INTEGER},
       dac = #{dac,jdbcType=VARCHAR},
       ctrl_flag = #{ctrl_flag,jdbcType=VARCHAR},
@@ -338,10 +362,10 @@
     where acct_no = #{acct_no,jdbcType=VARCHAR}
       and acct_seqno = #{acct_seqno,jdbcType=VARCHAR}
   </update>
-  <select id="getLastAcctNoByAcctType" parameterType="java.lang.String"  resultType="java.lang.String" >
+  <select id="getLastAcctNoByAcctType" parameterType="java.lang.String" resultType="java.lang.String">
   	select max(acct_no) from c_acct_info where acct_type=#{acct_type,jdbcType=VARCHAR}
   </select>
-  <select id="getLastSubAcctSeqNoByAcctNo" parameterType="java.lang.String"  resultType="java.lang.String" >
+  <select id="getLastSubAcctSeqNoByAcctNo" parameterType="java.lang.String" resultType="java.lang.String">
   	select max(acct_seqno) from c_acct_info where acct_no=#{acct_no,jdbcType=VARCHAR}
   </select>
 </mapper>
