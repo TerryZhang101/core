@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nms.core.dao.TransactionJourMapper" >
+  <resultMap id="BaseResultMap" type="com.nms.core.entity.TransactionJour" >
+    <constructor >
+      <idArg column="set_date" jdbcType="DATE" javaType="java.util.Date" />
+      <idArg column="oper_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <idArg column="seqno" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <idArg column="sub_seqno" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_bran_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_date" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="trans_time" jdbcType="TIME" javaType="java.util.Date" />
+      <arg column="trans_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ext_seqno" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="acct_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="acct_seqno" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="dc_flag" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="trans_amt" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="opp_acct_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="abs" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="trans_status" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="rcvPkglen" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="rcvbuf1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="rcvbuf2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sndPkglen" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sndbuf1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sndbuf2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="response" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="respdesc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    set_date, oper_no, seqno, sub_seqno, trans_bran_code, trans_date, trans_time, trans_code, 
+    ext_seqno, acct_no, acct_seqno, dc_flag, trans_amt, opp_acct_no, abs, trans_status, 
+    rcvPkglen, rcvbuf1, rcvbuf2, sndPkglen, sndbuf1, sndbuf2, response, respdesc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.nms.core.entity.TransactionJourKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_trans_jour
+    where set_date = #{setDate,jdbcType=DATE}
+      and oper_no = #{operNo,jdbcType=VARCHAR}
+      and seqno = #{seqno,jdbcType=VARCHAR}
+      and sub_seqno = #{subSeqno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.nms.core.entity.TransactionJourKey" >
+    delete from c_trans_jour
+    where set_date = #{setDate,jdbcType=DATE}
+      and oper_no = #{operNo,jdbcType=VARCHAR}
+      and seqno = #{seqno,jdbcType=VARCHAR}
+      and sub_seqno = #{subSeqno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.nms.core.entity.TransactionJour" >
+    insert into c_trans_jour (set_date, oper_no, seqno, 
+      sub_seqno, trans_bran_code, trans_date, 
+      trans_time, trans_code, ext_seqno, 
+      acct_no, acct_seqno, dc_flag, 
+      trans_amt, opp_acct_no, abs, 
+      trans_status, rcvPkglen, rcvbuf1, 
+      rcvbuf2, sndPkglen, sndbuf1, 
+      sndbuf2, response, respdesc
+      )
+    values (#{setDate,jdbcType=DATE}, #{operNo,jdbcType=VARCHAR}, #{seqno,jdbcType=VARCHAR}, 
+      #{subSeqno,jdbcType=VARCHAR}, #{transBranCode,jdbcType=VARCHAR}, #{transDate,jdbcType=DATE}, 
+      #{transTime,jdbcType=TIME}, #{transCode,jdbcType=VARCHAR}, #{extSeqno,jdbcType=VARCHAR}, 
+      #{acctNo,jdbcType=VARCHAR}, #{acctSeqno,jdbcType=VARCHAR}, #{dcFlag,jdbcType=INTEGER}, 
+      #{transAmt,jdbcType=DECIMAL}, #{oppAcctNo,jdbcType=VARCHAR}, #{abs,jdbcType=VARCHAR}, 
+      #{transStatus,jdbcType=VARCHAR}, #{rcvpkglen,jdbcType=INTEGER}, #{rcvbuf1,jdbcType=VARCHAR}, 
+      #{rcvbuf2,jdbcType=VARCHAR}, #{sndpkglen,jdbcType=INTEGER}, #{sndbuf1,jdbcType=VARCHAR}, 
+      #{sndbuf2,jdbcType=VARCHAR}, #{response,jdbcType=VARCHAR}, #{respdesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.nms.core.entity.TransactionJour" >
+    insert into c_trans_jour
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="setDate != null" >
+        set_date,
+      </if>
+      <if test="operNo != null" >
+        oper_no,
+      </if>
+      <if test="seqno != null" >
+        seqno,
+      </if>
+      <if test="subSeqno != null" >
+        sub_seqno,
+      </if>
+      <if test="transBranCode != null" >
+        trans_bran_code,
+      </if>
+      <if test="transDate != null" >
+        trans_date,
+      </if>
+      <if test="transTime != null" >
+        trans_time,
+      </if>
+      <if test="transCode != null" >
+        trans_code,
+      </if>
+      <if test="extSeqno != null" >
+        ext_seqno,
+      </if>
+      <if test="acctNo != null" >
+        acct_no,
+      </if>
+      <if test="acctSeqno != null" >
+        acct_seqno,
+      </if>
+      <if test="dcFlag != null" >
+        dc_flag,
+      </if>
+      <if test="transAmt != null" >
+        trans_amt,
+      </if>
+      <if test="oppAcctNo != null" >
+        opp_acct_no,
+      </if>
+      <if test="abs != null" >
+        abs,
+      </if>
+      <if test="transStatus != null" >
+        trans_status,
+      </if>
+      <if test="rcvpkglen != null" >
+        rcvPkglen,
+      </if>
+      <if test="rcvbuf1 != null" >
+        rcvbuf1,
+      </if>
+      <if test="rcvbuf2 != null" >
+        rcvbuf2,
+      </if>
+      <if test="sndpkglen != null" >
+        sndPkglen,
+      </if>
+      <if test="sndbuf1 != null" >
+        sndbuf1,
+      </if>
+      <if test="sndbuf2 != null" >
+        sndbuf2,
+      </if>
+      <if test="response != null" >
+        response,
+      </if>
+      <if test="respdesc != null" >
+        respdesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="setDate != null" >
+        #{setDate,jdbcType=DATE},
+      </if>
+      <if test="operNo != null" >
+        #{operNo,jdbcType=VARCHAR},
+      </if>
+      <if test="seqno != null" >
+        #{seqno,jdbcType=VARCHAR},
+      </if>
+      <if test="subSeqno != null" >
+        #{subSeqno,jdbcType=VARCHAR},
+      </if>
+      <if test="transBranCode != null" >
+        #{transBranCode,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        #{transDate,jdbcType=DATE},
+      </if>
+      <if test="transTime != null" >
+        #{transTime,jdbcType=TIME},
+      </if>
+      <if test="transCode != null" >
+        #{transCode,jdbcType=VARCHAR},
+      </if>
+      <if test="extSeqno != null" >
+        #{extSeqno,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctSeqno != null" >
+        #{acctSeqno,jdbcType=VARCHAR},
+      </if>
+      <if test="dcFlag != null" >
+        #{dcFlag,jdbcType=INTEGER},
+      </if>
+      <if test="transAmt != null" >
+        #{transAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="oppAcctNo != null" >
+        #{oppAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="abs != null" >
+        #{abs,jdbcType=VARCHAR},
+      </if>
+      <if test="transStatus != null" >
+        #{transStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rcvpkglen != null" >
+        #{rcvpkglen,jdbcType=INTEGER},
+      </if>
+      <if test="rcvbuf1 != null" >
+        #{rcvbuf1,jdbcType=VARCHAR},
+      </if>
+      <if test="rcvbuf2 != null" >
+        #{rcvbuf2,jdbcType=VARCHAR},
+      </if>
+      <if test="sndpkglen != null" >
+        #{sndpkglen,jdbcType=INTEGER},
+      </if>
+      <if test="sndbuf1 != null" >
+        #{sndbuf1,jdbcType=VARCHAR},
+      </if>
+      <if test="sndbuf2 != null" >
+        #{sndbuf2,jdbcType=VARCHAR},
+      </if>
+      <if test="response != null" >
+        #{response,jdbcType=VARCHAR},
+      </if>
+      <if test="respdesc != null" >
+        #{respdesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nms.core.entity.TransactionJour" >
+    update c_trans_jour
+    <set >
+      <if test="transBranCode != null" >
+        trans_bran_code = #{transBranCode,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        trans_date = #{transDate,jdbcType=DATE},
+      </if>
+      <if test="transTime != null" >
+        trans_time = #{transTime,jdbcType=TIME},
+      </if>
+      <if test="transCode != null" >
+        trans_code = #{transCode,jdbcType=VARCHAR},
+      </if>
+      <if test="extSeqno != null" >
+        ext_seqno = #{extSeqno,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null" >
+        acct_no = #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctSeqno != null" >
+        acct_seqno = #{acctSeqno,jdbcType=VARCHAR},
+      </if>
+      <if test="dcFlag != null" >
+        dc_flag = #{dcFlag,jdbcType=INTEGER},
+      </if>
+      <if test="transAmt != null" >
+        trans_amt = #{transAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="oppAcctNo != null" >
+        opp_acct_no = #{oppAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="abs != null" >
+        abs = #{abs,jdbcType=VARCHAR},
+      </if>
+      <if test="transStatus != null" >
+        trans_status = #{transStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rcvpkglen != null" >
+        rcvPkglen = #{rcvpkglen,jdbcType=INTEGER},
+      </if>
+      <if test="rcvbuf1 != null" >
+        rcvbuf1 = #{rcvbuf1,jdbcType=VARCHAR},
+      </if>
+      <if test="rcvbuf2 != null" >
+        rcvbuf2 = #{rcvbuf2,jdbcType=VARCHAR},
+      </if>
+      <if test="sndpkglen != null" >
+        sndPkglen = #{sndpkglen,jdbcType=INTEGER},
+      </if>
+      <if test="sndbuf1 != null" >
+        sndbuf1 = #{sndbuf1,jdbcType=VARCHAR},
+      </if>
+      <if test="sndbuf2 != null" >
+        sndbuf2 = #{sndbuf2,jdbcType=VARCHAR},
+      </if>
+      <if test="response != null" >
+        response = #{response,jdbcType=VARCHAR},
+      </if>
+      <if test="respdesc != null" >
+        respdesc = #{respdesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where set_date = #{setDate,jdbcType=DATE}
+      and oper_no = #{operNo,jdbcType=VARCHAR}
+      and seqno = #{seqno,jdbcType=VARCHAR}
+      and sub_seqno = #{subSeqno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nms.core.entity.TransactionJour" >
+    update c_trans_jour
+    set trans_bran_code = #{transBranCode,jdbcType=VARCHAR},
+      trans_date = #{transDate,jdbcType=DATE},
+      trans_time = #{transTime,jdbcType=TIME},
+      trans_code = #{transCode,jdbcType=VARCHAR},
+      ext_seqno = #{extSeqno,jdbcType=VARCHAR},
+      acct_no = #{acctNo,jdbcType=VARCHAR},
+      acct_seqno = #{acctSeqno,jdbcType=VARCHAR},
+      dc_flag = #{dcFlag,jdbcType=INTEGER},
+      trans_amt = #{transAmt,jdbcType=DECIMAL},
+      opp_acct_no = #{oppAcctNo,jdbcType=VARCHAR},
+      abs = #{abs,jdbcType=VARCHAR},
+      trans_status = #{transStatus,jdbcType=VARCHAR},
+      rcvPkglen = #{rcvpkglen,jdbcType=INTEGER},
+      rcvbuf1 = #{rcvbuf1,jdbcType=VARCHAR},
+      rcvbuf2 = #{rcvbuf2,jdbcType=VARCHAR},
+      sndPkglen = #{sndpkglen,jdbcType=INTEGER},
+      sndbuf1 = #{sndbuf1,jdbcType=VARCHAR},
+      sndbuf2 = #{sndbuf2,jdbcType=VARCHAR},
+      response = #{response,jdbcType=VARCHAR},
+      respdesc = #{respdesc,jdbcType=VARCHAR}
+    where set_date = #{setDate,jdbcType=DATE}
+      and oper_no = #{operNo,jdbcType=VARCHAR}
+      and seqno = #{seqno,jdbcType=VARCHAR}
+      and sub_seqno = #{subSeqno,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectAcctByCustNo" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    SELECT
+      acct_no,
+      acct_seqno
+    FROM
+      c_acct_info
+    WHERE
+      cust_no = #{cust_no, jdbcType=VARCHAR}
+    AND
+      acct_type = #{acct_type, jdbcType=VARCHAR}
+  </select>
+</mapper>
