@@ -3,12 +3,10 @@ package com.nms.core.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * 订单信息
- * Created by K on 2017/9/21.
- */
 public class Order {
     private String orderNo;
+
+    private String outTradeNo;
 
     private Integer custNo;
 
@@ -34,8 +32,9 @@ public class Order {
 
     private String remark;
 
-    public Order(String orderNo, Integer custNo, String bizType, String payType, String organId, Date orderDate, Date orderTime, BigDecimal transAmt, Integer orderState, Integer refundTimes, BigDecimal refundAmt, String payId, String remark) {
+    public Order(String orderNo, String outTradeNo, Integer custNo, String bizType, String payType, String organId, Date orderDate, Date orderTime, BigDecimal transAmt, Integer orderState, Integer refundTimes, BigDecimal refundAmt, String payId, String remark) {
         this.orderNo = orderNo;
+        this.outTradeNo = outTradeNo;
         this.custNo = custNo;
         this.bizType = bizType;
         this.payType = payType;
@@ -60,6 +59,14 @@ public class Order {
 
     public void setOrderNo(String orderNo) {
         this.orderNo = orderNo == null ? null : orderNo.trim();
+    }
+
+    public String getOutTradeNo() {
+        return outTradeNo;
+    }
+
+    public void setOutTradeNo(String outTradeNo) {
+        this.outTradeNo = outTradeNo == null ? null : outTradeNo.trim();
     }
 
     public Integer getCustNo() {
@@ -156,24 +163,5 @@ public class Order {
 
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderNo='" + orderNo + '\'' +
-                ", custNo=" + custNo +
-                ", bizType='" + bizType + '\'' +
-                ", payType='" + payType + '\'' +
-                ", organId='" + organId + '\'' +
-                ", orderDate=" + orderDate +
-                ", orderTime=" + orderTime +
-                ", transAmt=" + transAmt +
-                ", orderState=" + orderState +
-                ", refundTimes=" + refundTimes +
-                ", refundAmt=" + refundAmt +
-                ", payId='" + payId + '\'' +
-                ", remark='" + remark + '\'' +
-                '}';
     }
 }

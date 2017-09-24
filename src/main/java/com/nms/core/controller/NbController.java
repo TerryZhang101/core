@@ -39,7 +39,7 @@ public class NbController {
         logger.info(request.getRequestURI() + " ==> " + JSON.toJSONString(jsonObj));
 
         Map<String,Object> responseMap = new HashMap<String,Object>();
-        String[] requiredFields = {"cust_no","pay_amount","pay_type","biz_type","organ_id","channel"};
+        String[] requiredFields = {"cust_no","pay_amount","out_trade_no","pay_type","biz_type","organ_id","channel"};
 
         try {
 

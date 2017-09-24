@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.nms.core.entity.Order" >
     <constructor >
       <idArg column="order_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="out_trade_no" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="cust_no" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="biz_type" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="pay_type" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -19,8 +20,8 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    order_no, cust_no, biz_type, pay_type, organ_id, order_date, order_time, trans_amt, 
-    order_state, refund_times, refund_amt, pay_id, remark
+    order_no, out_trade_no, cust_no, biz_type, pay_type, organ_id, order_date, order_time, 
+    trans_amt, order_state, refund_times, refund_amt, pay_id, remark
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
@@ -33,22 +34,25 @@
     where order_no = #{orderNo,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.nms.core.entity.Order" >
-    insert into c_order_flow (order_no, cust_no, biz_type, 
-      pay_type, organ_id, order_date, 
-      order_time, trans_amt, order_state, 
-      refund_times, refund_amt, pay_id, 
-      remark)
-    values (#{orderNo,jdbcType=VARCHAR}, #{custNo,jdbcType=INTEGER}, #{bizType,jdbcType=VARCHAR}, 
-      #{payType,jdbcType=VARCHAR}, #{organId,jdbcType=VARCHAR}, #{orderDate,jdbcType=DATE}, 
-      #{orderTime,jdbcType=TIME}, #{transAmt,jdbcType=DECIMAL}, #{orderState,jdbcType=INTEGER}, 
-      #{refundTimes,jdbcType=INTEGER}, #{refundAmt,jdbcType=DECIMAL}, #{payId,jdbcType=VARCHAR}, 
-      #{remark,jdbcType=VARCHAR})
+    insert into c_order_flow (order_no, out_trade_no, cust_no, 
+      biz_type, pay_type, organ_id, 
+      order_date, order_time, trans_amt, 
+      order_state, refund_times, refund_amt, 
+      pay_id, remark)
+    values (#{orderNo,jdbcType=VARCHAR}, #{outTradeNo,jdbcType=VARCHAR}, #{custNo,jdbcType=INTEGER}, 
+      #{bizType,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR}, #{organId,jdbcType=VARCHAR}, 
+      #{orderDate,jdbcType=DATE}, #{orderTime,jdbcType=TIME}, #{transAmt,jdbcType=DECIMAL}, 
+      #{orderState,jdbcType=INTEGER}, #{refundTimes,jdbcType=INTEGER}, #{refundAmt,jdbcType=DECIMAL}, 
+      #{payId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.nms.core.entity.Order" >
     insert into c_order_flow
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="orderNo != null" >
         order_no,
+      </if>
+      <if test="outTradeNo != null" >
+        out_trade_no,
       </if>
       <if test="custNo != null" >
         cust_no,
@@ -91,6 +95,9 @@
       <if test="orderNo != null" >
         #{orderNo,jdbcType=VARCHAR},
       </if>
+      <if test="outTradeNo != null" >
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
       <if test="custNo != null" >
         #{custNo,jdbcType=INTEGER},
       </if>
@@ -132,6 +139,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.nms.core.entity.Order" >
     update c_order_flow
     <set >
+      <if test="outTradeNo != null" >
+        out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
       <if test="custNo != null" >
         cust_no = #{custNo,jdbcType=INTEGER},
       </if>
@@ -173,7 +183,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.nms.core.entity.Order" >
     update c_order_flow
-    set cust_no = #{custNo,jdbcType=INTEGER},
+    set out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      cust_no = #{custNo,jdbcType=INTEGER},
       biz_type = #{bizType,jdbcType=VARCHAR},
       pay_type = #{payType,jdbcType=VARCHAR},
       organ_id = #{organId,jdbcType=VARCHAR},

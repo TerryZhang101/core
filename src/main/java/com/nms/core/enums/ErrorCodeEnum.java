@@ -17,8 +17,10 @@ public enum ErrorCodeEnum {
 	OLDLOGONPWDERROR("21003", "原登录密码不正确"),
 	OLDTRANPWDERROR("21004", "原交易密码不正确"),
 	MOBILENOCHANGE("21005", "新手机号与原手机号一样"),
-	NEWMOBILEEXITS("21006", "新手机号已被占用");
-	
+	NEWMOBILEEXITS("21006", "新手机号已被占用"),
+	PAY_ACCT_NOT_EXITS("21007", "付款人账号信息不存在"),
+	REC_ACCT_NOT_EXITS("21008", "收款人账号信息不存在");
+
 	
 	private String value;
 	private String text;

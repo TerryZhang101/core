@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS c_order_flow;
 CREATE TABLE c_order_flow
 (
     order_no varchar(32)  NOT NULL COMMENT '预支付订单号',
+    out_trade_no varchar(32)  NOT NULL COMMENT '外部系统流水号',
     cust_no int(11) NOT NULL COMMENT '客户号',
     biz_type varchar(2) NOT NULL COMMENT '订单类型：00=诺宝充值；01=诺券充值；',
     pay_type varchar(2) NOT NULL COMMENT '支付类型：00=微信；01=支付宝；02=诺宝',
