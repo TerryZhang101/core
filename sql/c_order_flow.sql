@@ -23,3 +23,6 @@ CREATE TABLE c_order_flow
     PRIMARY KEY (order_no)
 )
   ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
+
+  CREATE UNIQUE INDEX c_order_flow_out_trade_no_uindex ON c_order_flow (out_trade_no);
+  CREATE UNIQUE INDEX c_order_flow_pay_id_uindex ON c_order_flow (pay_id);
